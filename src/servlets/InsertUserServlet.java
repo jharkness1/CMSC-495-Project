@@ -64,7 +64,7 @@ public class InsertUserServlet extends HttpServlet {
 		// check if all required fields have been filled out
 		if (firstName.length() > 0 || lastName.length() > 0 || email.length() > 0 || username.length() > 0
 				|| password.length() > 0 || password_confirm.length() > 0) {
-			// if all required fields have been filled out, validate all other fields
+			// if all required fields have been filled out, validate all fields
 			if (Validator.validateOnlyLetters(firstName) && Validator.validateOnlyLetters(lastName)
 					&& Validator.validateEmail(email) && Validator.validateOnlyLettersAndNumbers(username)
 					&& Validator.validatePassword(password) && Validator.validatePassword(password_confirm)
@@ -79,8 +79,8 @@ public class InsertUserServlet extends HttpServlet {
 				if (password.equals(password_confirm)) {
 
 					// create UserProfile object
-					UserProfile user = new UserProfile(firstName, lastName, email, username, password, company,
-							department, title, streetAddr, city, state, zip, phone);
+					UserProfile user = new UserProfile(firstName, lastName, email, company,
+							department, title, streetAddr, city, state, zip, phone, username, password);
 					UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 					// avoid creating duplicate accounts
 					// check if given username or email already exist in the database table
