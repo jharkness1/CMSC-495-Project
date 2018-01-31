@@ -62,65 +62,63 @@ public class InsertUserServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 
 		// check if all required fields have been filled out
-		if (firstName.length() == 0 || lastName.length() == 0 || email.length() == 0 || username.length() == 0
-				|| password.length() == 0 || password_confirm.length() == 0) {
-			// if any of the required fields have not been filled out,
-			// display an error message above the form
-			request.setAttribute("ErrorMessage", "Make sure that all required fields are filled.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
-			dispatcher.forward(request, response);
-		} // end if required fields have not been filled out
+		if (firstName.length() > 0 || lastName.length() > 0 || email.length() > 0 || username.length() > 0
+				|| password.length() > 0 || password_confirm.length() > 0) {
 			// if all required fields have been filled out, validate all other fields
-		if (Validator.validateOnlyLetters(firstName) && Validator.validateOnlyLetters(lastName)
-				&& Validator.validateEmail(email) && Validator.validateOnlyLettersAndNumbers(username)
-				&& Validator.validatePassword(password) && Validator.validatePassword(password_confirm)
-				&& Validator.validateOnlyLettersAndNumbers(company)
-				&& Validator.validateOnlyLettersAndNumbers(department) && Validator.validateOnlyLettersAndNumbers(title)
-				&& Validator.validateAddress(streetAddr) && Validator.validateOnlyLetters(city)
-				&& Validator.validatePhone(phone)) {
-			// validate state and zip only if they are not empty
-			if (state.length() != 0) {
-				if (!Validator.validateState(state)) {
-					// display an error message above the form
-					request.setAttribute("ErrorMessage", "Wrong input. Check if all form fields are correct.");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
-					dispatcher.forward(request, response);
-				}
-			}
-			if (zip.length() != 0) {
-				if (!Validator.validateZip(zip)) {
-					// display an error message above the form
-					request.setAttribute("ErrorMessage", "Wrong input. Check if all form fields are correct.");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
-					dispatcher.forward(request, response);
-				}
-			}
-			// if all fields contain safe, acceptable characters, check if password_confirm
-			// matches password
-			if (!password.equals(password_confirm)) {
-				// display an error message above the form
-				request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
-				dispatcher.forward(request, response);
-			}
-			// create UserProfile object
-			UserProfile user = new UserProfile(firstName, lastName, email, username, password, company, department,
-					title, streetAddr, city, state, zip, phone);
-			UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
-			// avoid creating duplicate accounts
-			// check if given username or email already exist in the database table
-			if (userProfileDaoImpl.userExists(username, email)) {
-				// display an error message above the form
-				request.setAttribute("ErrorMessage", "User account for that username or email already exist!");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
-				dispatcher.forward(request, response);
-			}
-			 userProfileDaoImpl.insertUser(user);
+			if (Validator.validateOnlyLetters(firstName) && Validator.validateOnlyLetters(lastName)
+					&& Validator.validateEmail(email) && Validator.validateOnlyLettersAndNumbers(username)
+					&& Validator.validatePassword(password) && Validator.validatePassword(password_confirm)
+					&& Validator.validateOnlyLettersAndNumbers(company)
+					&& Validator.validateOnlyLettersAndNumbers(department)
+					&& Validator.validateOnlyLettersAndNumbers(title) && Validator.validateAddress(streetAddr)
+					&& Validator.validateOnlyLetters(city) && Validator.validateState(state)
+					&& Validator.validateZip(zip) && Validator.validatePhone(phone)) {
 
-		} // end if all posted fields have been positively validated
-		// if user input was not valid
-		// display an error message above the form
-		request.setAttribute("ErrorMessage", "Wrong input. Check if all form fields are correct.");
+				// if all fields contain safe, acceptable characters, check if password_confirm
+				// matches password
+				if (password.equals(password_confirm)) {
+
+					// create UserProfile object
+					UserProfile user = new UserProfile(firstName, lastName, email, username, password, company,
+							department, title, streetAddr, city, state, zip, phone);
+					UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
+					// avoid creating duplicate accounts
+					// check if given username or email already exist in the database table
+					if (!userProfileDaoImpl.userExists(username, email)) {
+
+						// attempt to create new account
+						if (userProfileDaoImpl.insertUser(user)) {
+							// if user was successfully added to the database table
+							// display message above the form
+							request.setAttribute("ErrorMessage",
+									"Success! You can login using the registered credentials.");
+
+						} else {
+							// if account could not be created
+							// display an error message above the form
+							request.setAttribute("ErrorMessage",
+									"Sorry. The account could not be created at the moment.");
+
+						}
+					} else {
+						// display an error message above the form
+						request.setAttribute("ErrorMessage", "User account for that username or email already exist!");
+					}
+				} else {
+					// display an error message above the form
+					request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
+				}
+
+			} // end if all posted fields have been positively validated
+			else {
+				// if user input was not valid
+				// display an error message above the form
+				request.setAttribute("ErrorMessage", "Wrong input. Check if all form fields are correct.");
+
+			}
+		} else {
+			request.setAttribute("ErrorMessage", "Check if all required fields are filled out.");
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("insert.jsp");
 		dispatcher.forward(request, response);
 

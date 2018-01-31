@@ -126,9 +126,9 @@ public class Validator {
 		// normalize first
 		String normalizedState = Normalizer.normalize(state, Normalizer.Form.NFKC);
 		// check length
-		if (normalizedState.length() != 2) {
+		if (normalizedState.length() > 2) {
 			valid = false;
-		} // end if length is other than 2
+		} 
 		else {
 			// create a white list of accepted characters:
 			Pattern pattern = Pattern.compile("[^A-Za-z]");
@@ -148,9 +148,9 @@ public class Validator {
 		// normalize first
 		String normalizedZip = Normalizer.normalize(zip, Normalizer.Form.NFKC);
 		// check length
-		if (normalizedZip.length() != 5) {
+		if (normalizedZip.length() > 5) {
 			valid = false;
-		} // end if length is other than 5
+		}
 		else {
 			// create a white list of accepted characters:
 			Pattern pattern = Pattern.compile("[^0-9]");
