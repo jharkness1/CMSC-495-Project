@@ -2,7 +2,6 @@ package models;
 
 public class UserProfile {
 
-
 	// fields
 	// initialize id to 0 (there will never be such id in the database)
 	private int id = 0;
@@ -25,6 +24,25 @@ public class UserProfile {
 	public UserProfile() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	// constructor with all fields except id
+	public UserProfile(String firstname, String lastname, String email, String company, String department,
+			String title, String work_address, String work_city, String work_state, String work_zip, String phone,
+			String username, String password) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.company = company;
+		this.department = department;
+		this.title = title;
+		this.work_address = work_address;
+		this.work_city = work_city;
+		this.work_state = work_state;
+		this.work_zip = work_zip;
+		this.phone = phone;
+		this.username = username;
+		this.password = password;
 	}
 
 	// getter and setter methods

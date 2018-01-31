@@ -8,6 +8,19 @@
 <title>Create User Account</title>
 </head>
 <body>
+	<div id="error">
+		<!-- Print Error Message if any -->
+		<%
+			String e = (String) request.getAttribute("ErrorMessage");
+			if (e != null) {
+		%>
+		<center>
+			<br /><font color="red"><%=e%></font><br /> <br />
+		</center>
+		<%
+			}
+		%>
+	</div>
 	<div id="createAccountForm">
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="insertUser">
