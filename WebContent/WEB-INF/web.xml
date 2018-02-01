@@ -15,4 +15,12 @@
 		<servlet-name>InsertUserServlet</servlet-name>
 		<url-pattern>/insertUser</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>SearchUsersServlet</servlet-name>
+		<servlet-class>servlets.SearchUsersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchUsersServlet</servlet-name>
+		<url-pattern>/searchUser</url-pattern>
+	</servlet-mapping>
 </web-app>

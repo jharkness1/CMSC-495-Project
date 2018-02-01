@@ -48,7 +48,8 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
 					numberOfRows = rs.getInt(1);
-//					System.out.println("Number of users by that username or email equals " + numberOfRows);
+					// System.out.println("Number of users by that username or email equals " +
+					// numberOfRows);
 				}
 				// if the query returned number of rows other than 0, user already exists
 				if (numberOfRows > 0) {
@@ -80,7 +81,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-//		System.out.println(exists);
+			// System.out.println(exists);
 		return exists;
 	} // end userExists method
 
@@ -153,9 +154,95 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end insertUser
 
 	@Override
+	/**
+	 * method to search for users in database table by Last Name Returns Array List
+	 * of UserProfile objects where each UserProfile object represents single user
+	 * in database table
+	 */
 	public ArrayList<UserProfile> getSearchResultsByName(String lastName) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<UserProfile> searchResults = new ArrayList<>();
+		int id = 0;
+		String lastnameResult;
+		String firstname;
+		String email;
+		String department;
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "SELECT id, lastname, firstname, email, department FROM profiles WHERE lastname=?";
+
+			PreparedStatement prepSt = null;
+			ResultSet rs = null;
+			try {
+				prepSt = conn.prepareStatement(query);
+				// bind parameter with SQL query
+				prepSt.setString(1, lastName);
+
+				rs = prepSt.executeQuery();
+				// iterate over results, retrieve by column index
+				while (rs.next()) {
+					id = rs.getInt(1);
+					lastnameResult = rs.getString(2);
+					firstname = rs.getString(3);
+					email = rs.getString(4);
+					// this field can be null!
+					department = rs.getString(5);
+					if (department == null) {
+						// replace null with empty string
+						department = "";
+					}
+					// create new UserProfile object
+					UserProfile resultUser = new UserProfile();
+					// set appropriate fields to values from database
+					resultUser.setId(id);
+					resultUser.setLastname(lastnameResult);
+					resultUser.setFirstname(firstname);
+					resultUser.setEmail(email);
+					resultUser.setDepartment(department);
+					// add resultUser to the list of search results
+					searchResults.add(resultUser);
+				} // end while
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+				if (rs != null) {
+					rs.close();
+				}
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL exception");
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println("Other exception");
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println("close conn exception");
+					System.out.println(ex);
+				}
+			}
+		}
+
+//		 System.out.println("Results length: " + searchResults.size());
+//		 // iterate over results
+//		 for (UserProfile u : searchResults) {
+//		 System.out.print(u.getId());
+//		 System.out.print(u.getLastname());
+//		 System.out.print(u.getFirstname());
+//		 System.out.print(u.getEmail());
+//		 System.out.println(u.getDepartment());
+//		 }
+		return searchResults;
 	}
 
 	@Override
