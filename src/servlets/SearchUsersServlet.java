@@ -68,7 +68,22 @@ public class SearchUsersServlet extends HttpServlet {
 				}
 			}
 			else if (searchBy.equals("department")) {
-				
+				// validate department
+				if (Validator.validateOnlyLettersAndNumbers(searchValue)) {
+					// create data access object implementation
+					UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
+					searchResults = userProfileDaoImpl.getSearchResultsByDept(searchValue);
+					// set the request attribute to forward the results to jsp
+					request.setAttribute("results", searchResults);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+					dispatcher.forward(request, response);
+				} else {
+					// display an error message above the form
+					request.setAttribute("ErrorMessage",
+							"Wrong input!");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");
+					dispatcher.forward(request, response);
+				}
 			}
 			else {
 				// display an error message above the form
