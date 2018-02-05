@@ -67,6 +67,7 @@ public class SearchUsersServlet extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			}
+			// check what was the search type (department)
 			else if (searchBy.equals("department")) {
 				// validate department
 				if (Validator.validateOnlyLettersAndNumbers(searchValue)) {
@@ -77,7 +78,7 @@ public class SearchUsersServlet extends HttpServlet {
 					request.setAttribute("results", searchResults);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
 					dispatcher.forward(request, response);
-				} else {
+				} else { // search type other that lastName or department (no such option should be allowed!)
 					// display an error message above the form
 					request.setAttribute("ErrorMessage",
 							"Wrong input!");
@@ -88,7 +89,7 @@ public class SearchUsersServlet extends HttpServlet {
 			else {
 				// display an error message above the form
 				request.setAttribute("ErrorMessage",
-						"Someone might try to hack the application!");
+						"Someone might be trying to hack the application!");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");
 				dispatcher.forward(request, response);
 			}

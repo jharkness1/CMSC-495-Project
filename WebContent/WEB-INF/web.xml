@@ -23,4 +23,12 @@
 		<servlet-name>SearchUsersServlet</servlet-name>
 		<url-pattern>/searchUser</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ListAllUsersServlet</servlet-name>
+		<servlet-class>servlets.ListAllUsersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListAllUsersServlet</servlet-name>
+		<url-pattern>/listAll</url-pattern>
+	</servlet-mapping>
 </web-app>

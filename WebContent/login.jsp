@@ -9,6 +9,9 @@
 <title>Login</title>
 </head>
 <body>
+	<form method="post" action="listAll">
+		<input type="submit" name="listAll" value="List All Users">
+	</form>
 	<h3>
 		Password: 11111111
 		<%=Validator.validatePassword("11111111")%></h3>
