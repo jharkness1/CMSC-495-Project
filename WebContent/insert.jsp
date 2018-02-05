@@ -73,19 +73,19 @@
 					<tr>
 						<td>Company:</td>
 						<td><input type="text" id="company" name="company" value=""
-							size="30" pattern="[A-Za-z-0-9]*"
+							size="30" pattern="[A-Za-z-0-9 ]*"
 							title="Only letters and numbers allowed"></td>
 					</tr>
 					<tr>
 						<td>Department:</td>
 						<td><input type="text" id="department" name="department"
-							value="" size="30" pattern="[A-Za-z-0-9]*"
+							value="" size="30" pattern="[A-Za-z-0-9 ]*"
 							title="Only letters and numbers allowed"></td>
 					</tr>
 					<tr>
 						<td>Job Title:</td>
 						<td><input type="text" id="title" name="title" value=""
-							size="30" pattern="[A-Za-z-0-9]*"
+							size="30" pattern="[A-Za-z-0-9 ]*"
 							title="Only letters and numbers allowed"></td>
 					</tr>
 					<tr>
