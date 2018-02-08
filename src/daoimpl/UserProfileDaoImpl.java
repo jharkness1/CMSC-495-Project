@@ -233,23 +233,23 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} // end clean up
 
-//		 System.out.println("Results length: " + searchResults.size());
-//		 // iterate over results
-//		 for (UserProfile u : searchResults) {
-//		 System.out.print(u.getId());
-//		 System.out.print(u.getLastname());
-//		 System.out.print(u.getFirstname());
-//		 System.out.print(u.getEmail());
-//		 System.out.println(u.getDepartment());
-//		 }
+		// System.out.println("Results length: " + searchResults.size());
+		// // iterate over results
+		// for (UserProfile u : searchResults) {
+		// System.out.print(u.getId());
+		// System.out.print(u.getLastname());
+		// System.out.print(u.getFirstname());
+		// System.out.print(u.getEmail());
+		// System.out.println(u.getDepartment());
+		// }
 		return searchResults;
 	} // end searchResultsByName method
 
 	@Override
 	/**
-	 * method to search for users in database table by the department Returns Array List
-	 * of UserProfile objects where each UserProfile object represents single user
-	 * in database table
+	 * method to search for users in database table by the department Returns Array
+	 * List of UserProfile objects where each UserProfile object represents single
+	 * user in database table
 	 */
 	public ArrayList<UserProfile> getSearchResultsByDept(String department) {
 		ArrayList<UserProfile> searchResults = new ArrayList<>();
@@ -325,9 +325,9 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 	@Override
 	/**
-	 * method to retrieve all users from database table Returns Array List
-	 * of UserProfile objects where each UserProfile object represents single user
-	 * in database table
+	 * method to retrieve all users from database table Returns Array List of
+	 * UserProfile objects where each UserProfile object represents single user in
+	 * database table
 	 */
 	public ArrayList<UserProfile> listAllResults() {
 		ArrayList<UserProfile> allResults = new ArrayList<>();
@@ -406,9 +406,131 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end listAllResults
 
 	@Override
-	public UserProfile accessProfile(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserProfile accessProfile(int i) {
+		// ArrayList<UserProfile> searchResults = new ArrayList<>();
+		UserProfile ownProfile = new UserProfile();
+//		int id = i;
+		String lastname;
+		String firstname;
+		String email;
+		String company;
+		String department;
+		String title;
+		String work_a;
+		String work_c;
+		String work_s;
+		String work_z;
+		String phone;
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "SELECT firstname,lastname,email,company,"
+					+ "department,title,work_address,work_city,work_state,"
+					+ "work_zip,phone "
+					+ "FROM profiles WHERE id=?";
+
+			PreparedStatement prepSt = null;
+			ResultSet rs = null;
+			try {
+				prepSt = conn.prepareStatement(query);
+				// bind parameter with SQL query
+				prepSt.setInt(1, i);
+
+				rs = prepSt.executeQuery();
+				// iterate over results, retrieve by column index
+				while (rs.next()) {
+//					id = rs.getInt(1); // you are not retrieving this field in query (it is the same id as method's argument)
+					// sequence numbers or columns are like in the query
+					firstname = rs.getString(1);
+					lastname = rs.getString(2);	
+					email = rs.getString(3);
+
+					// these fields can be null!
+					company = rs.getString(4);
+					if (company == null) {
+						// replace null with empty string
+						company = "";
+					}
+					department = rs.getString(5);
+					if (department == null) {
+						department = "";
+					}
+					title = rs.getString(6);
+					if (title == null) {
+						title = "";
+					}				
+					work_a = rs.getString(7);
+					if (work_a == null) {
+						work_a = "";
+					}
+					work_c = rs.getString(8);
+					if (work_c == null) {
+						work_c = "";
+					}
+					work_s = rs.getString(9);
+					if (work_s == null) {
+						work_s = "";
+					}
+					work_z = rs.getString(10);
+					if (work_z == null) {
+						work_z = "";
+					}
+					phone = rs.getString(11);
+					if (phone == null) {
+						phone = "";
+					}
+					
+					// create new UserProfile object
+//					UserProfile resultUser = new UserProfile();
+					
+					// set appropriate fields to values from database
+					ownProfile.setId(i);  //it is the same id as method's argument
+					ownProfile.setLastname(lastname);
+					ownProfile.setFirstname(firstname);
+					ownProfile.setEmail(email);
+					ownProfile.setCompany(company);
+					ownProfile.setDepartment(department);
+					ownProfile.setTitle(title);
+					ownProfile.setWork_address(work_a);
+					ownProfile.setWork_city(work_c);
+					ownProfile.setWork_state(work_s);
+					ownProfile.setWork_zip(work_z);
+					ownProfile.setPhone(phone);
+					// add resultUser to the list of search results
+//					searchResults.add(resultUser);
+				} // end while
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+				if (rs != null) {
+					rs.close();
+				}
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL exception");
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println("Other exception");
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println("close conn exception");
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		// return null;
+		return ownProfile;
 	}
 
 	@Override

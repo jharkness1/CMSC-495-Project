@@ -9,7 +9,35 @@
 <title>Login</title>
 </head>
 <body>
-	<form method="post" action="listAll">
+	<%-- Simulate Login Form --%>
+	<div id="login">
+		<h2>Login</h2>
+		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
+		<form method="post" action="authenticate">
+			<table id="login">
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" id="username" value="" name="username"
+						size="30" pattern="[A-Za-z-0-9 ]*"
+						title="Only letters and numbers allowed" autofocus></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" id="password" name="password"
+						value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
+						title="At least 8 characters. Allowed special characters are: ._!@$"
+						autocomplete='off'></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="right"><input type="submit" value="Login"
+						name="login"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<%-- <form method="post" action="listAll">
 		<input type="submit" name="listAll" value="List All Users">
 	</form>
 	<h3>
@@ -35,6 +63,6 @@
 		<%=Validator.validateZip("2120a")%></h3>
 	<h3>
 		phone: 2101122233
-		<%=Validator.validatePhone("2101122233")%></h3>
+		<%=Validator.validatePhone("2101122233")%></h3> --%>
 </body>
 </html>

@@ -48,3 +48,17 @@ SELECT id, firstname, lastname, email, company,
 	work_state, work_zip, phone, username, password 
 FROM profiles 
 WHERE id=1;
+
+-- delete user by id
+DELETE FROM profiles
+WHERE id=2;
+
+-- update user by id
+UPDATE profiles
+SET firstname='New Firstname', lastname='New Lastname',
+email='newemail@umuc.edu', company='New Company',
+department='New Department', title='Better Job Title',
+work_address='New Street 111', work_city='Different City',
+work_state='NS', work_zip='22222', phone='2222223333',
+username='nusername', password='qqqqqqqq' 
+WHERE id=4;
