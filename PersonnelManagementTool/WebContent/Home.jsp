@@ -53,7 +53,7 @@
 	<table id="profile" align="left" cellpadding="6" cellspacing="15" border="0">
 		<tr>
 			<form method="post" action="accessProfile">
-					<input type="hidden" name="id" value="<%=user.getId()%>">
+					<input type="hidden" name="id" value="<%=%>">
 				</form>
 		<tr>
 			<td><b>First Name</b></td>
