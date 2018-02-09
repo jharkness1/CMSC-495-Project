@@ -10,4 +10,8 @@ public interface LoginInfoDao {
 
 	boolean authenticate(LoginInfo loginInfo, String password);
 
+	boolean resetFailedLogin(LoginInfo loginInfo);
+
+	boolean updateFailedLogin(LoginInfo loginInfo);
+
 }
