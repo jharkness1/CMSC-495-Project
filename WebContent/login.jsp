@@ -1,3 +1,8 @@
+<%-- 
+    Document   : login
+    Created on : Feb 6, 2018, 12:22:08 PM
+    Author     : Kyle Post
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="utilities.Validator"%>
@@ -19,50 +24,46 @@
 					<td>Username:</td>
 					<td><input type="text" id="username" value="" name="username"
 						size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed" autofocus></td>
+						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td><input type="password" id="password" name="password"
 						value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off'></td>
+						required autocomplete='off'></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td align="right"><input type="submit" value="Login"
 						name="login"></td>
 				</tr>
+				<tr>
+					<td></td>
+					<td align="right"><a href="insert.jsp"><button
+								type="button">Create User Account</button></a></td>
+				</tr>
 			</table>
 		</form>
+		<!-- Print Error Message if any -->
+		<%
+			String e = (String) request.getAttribute("ErrorMessage");
+			if (e != null) {
+		%>
+		<br /> <font color="red"><%=e%></font><br />
+		<%
+			}
+		%>
+
+		<h5>
+			Privacy Disclaimer:<br /> This system is for the use of authorized
+			users only.<br /> Individuals using this computer system without<br />
+			authority, or in excess of their authority, are<br /> subject to
+			having all of their activities on this<br /> system monitored and
+			recorded by system personnel.
+		</h5>
+
 	</div>
-	
-	<%-- <form method="post" action="listAll">
-		<input type="submit" name="listAll" value="List All Users">
-	</form>
-	<h3>
-		Password: 11111111
-		<%=Validator.validatePassword("11111111")%></h3>
-	<h3>
-		Email: abc@!!$qqq.com
-		<%=Validator.validateEmail("abc@!!$qqq.com")%></h3>
-	<h3>
-		Last Name: John Doe21
-		<%=Validator.validateOnlyLetters("John Doe21")%></h3>
-	<h3>
-		username: John Doe21
-		<%=Validator.validateOnlyLettersAndNumbers("John Doe21")%></h3>
-	<h3>
-		street: 23 Nice Road apt#!!!222
-		<%=Validator.validateAddress("23 Nice Road apt<<!#222")%></h3>
-	<h3>
-		state: va
-		<%=Validator.validateState("va")%></h3>
-	<h3>
-		zip: 2120a
-		<%=Validator.validateZip("2120a")%></h3>
-	<h3>
-		phone: 2101122233
-		<%=Validator.validatePhone("2101122233")%></h3> --%>
+
 </body>
 </html>

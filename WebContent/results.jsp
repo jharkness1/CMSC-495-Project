@@ -10,10 +10,25 @@
 <title>Results</title>
 </head>
 <body>
+	<%!ArrayList<UserProfile> results;%>
 	<%
-		if (request.getAttribute("results") != null) {
-			ArrayList<UserProfile> results = (ArrayList<UserProfile>) request.getAttribute("results");
-			if (results.size() > 0) {
+		// if session is valid and user's role is admin
+		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
+			// check if the request contains results
+			if (request.getAttribute("results") != null) {
+				// retrieve results from the request
+				results = (ArrayList<UserProfile>) request.getAttribute("results");
+				// display buttons:
+	%>
+	<div id="buttons" align="right">
+		<form method="post" action="logout">
+			<input type="submit" name="logout" value="Logout">
+		</form>
+		<a href="home.jsp"><button type="button">Home</button></a>
+	</div>
+	<%
+		// if any results were found, display them
+				if (results.size() > 0) {
 	%>
 	<div id="results">
 		<h2>Results</h2>
@@ -26,7 +41,7 @@
 				<th>Department</th>
 			</tr>
 			<%
-					for (UserProfile u : results) {
+				for (UserProfile u : results) {
 			%>
 			<tr>
 				<form method="post" action="accessProfile">
@@ -50,14 +65,22 @@
 		</table>
 		<%
 			} // end if attribure searchResults was set
-			else {
+					else {
 		%>
 		<h2>No results were found.</h2>
 		<%
 			}
-		} else {  // if results attribute was not set
-			// redirect to other page...
-		}
+				} else { // if results attribute was not set
+					// try to redirect to home page
+					RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+					dispatcher.forward(request, response);
+				}
+
+			} else { // no session, redirect to login
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+				dispatcher.forward(request, response);
+			}
 		%>
 	
 </body>

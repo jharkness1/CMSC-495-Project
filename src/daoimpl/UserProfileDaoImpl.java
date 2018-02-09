@@ -406,21 +406,22 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end listAllResults
 
 	@Override
+	/**
+	 * method to retrieve user's profile from database table by user's id
+	 */
 	public UserProfile accessProfile(int i) {
-		// ArrayList<UserProfile> searchResults = new ArrayList<>();
 		UserProfile ownProfile = new UserProfile();
-//		int id = i;
-		String lastname;
-		String firstname;
-		String email;
-		String company;
-		String department;
-		String title;
-		String work_a;
-		String work_c;
-		String work_s;
-		String work_z;
-		String phone;
+		String lastname = "";
+		String firstname = "";
+		String email = "";
+		String company = "";
+		String department = "";
+		String title = "";
+		String work_a = "";
+		String work_c = "";
+		String work_s = "";
+		String work_z = "";
+		String phone = "";
 		Connection conn = null;
 		try {
 			// try to create connection to the database
@@ -428,8 +429,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			// use prepared statements to avoid SQL Injection
 			String query = "SELECT firstname,lastname,email,company,"
-					+ "department,title,work_address,work_city,work_state,"
-					+ "work_zip,phone "
+					+ "department,title,work_address,work_city,work_state,work_zip,phone "
 					+ "FROM profiles WHERE id=?";
 
 			PreparedStatement prepSt = null;
@@ -442,10 +442,9 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				rs = prepSt.executeQuery();
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
-//					id = rs.getInt(1); // you are not retrieving this field in query (it is the same id as method's argument)
-					// sequence numbers or columns are like in the query
+					// sequence numbers of columns are like in the query
 					firstname = rs.getString(1);
-					lastname = rs.getString(2);	
+					lastname = rs.getString(2);
 					email = rs.getString(3);
 
 					// these fields can be null!
@@ -461,7 +460,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					title = rs.getString(6);
 					if (title == null) {
 						title = "";
-					}				
+					}
 					work_a = rs.getString(7);
 					if (work_a == null) {
 						work_a = "";
@@ -482,12 +481,9 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					if (phone == null) {
 						phone = "";
 					}
-					
-					// create new UserProfile object
-//					UserProfile resultUser = new UserProfile();
-					
+
 					// set appropriate fields to values from database
-					ownProfile.setId(i);  //it is the same id as method's argument
+					ownProfile.setId(i); // it is the same id as method's argument
 					ownProfile.setLastname(lastname);
 					ownProfile.setFirstname(firstname);
 					ownProfile.setEmail(email);
@@ -499,8 +495,6 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					ownProfile.setWork_state(work_s);
 					ownProfile.setWork_zip(work_z);
 					ownProfile.setPhone(phone);
-					// add resultUser to the list of search results
-//					searchResults.add(resultUser);
 				} // end while
 
 			} catch (SQLException e) {
@@ -529,7 +523,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-		// return null;
+			// return null;
 		return ownProfile;
 	}
 

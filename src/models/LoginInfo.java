@@ -10,7 +10,7 @@ public class LoginInfo {
 	private String username = "";
 	private String password = "";
 	private int noFailedLoginAttempts = 0;
-	private Timestamp lastFailedLogin;
+	private Timestamp lastFailedLogin = null;
 	private String role = "";
 	
 	// constructor

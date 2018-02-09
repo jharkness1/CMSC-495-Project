@@ -8,6 +8,20 @@
 <title>Create User Account</title>
 </head>
 <body>
+	<%-- If the session is active allow to logout or return to Home page --%>
+	<%
+		if (session.getAttribute("ownProfile") != null) {
+	%>
+	<div id="buttons" align="right">
+		<form method="post" action="logout">
+			<input type="submit" name="logout" value="Logout">
+		</form>
+		<a href="home.jsp"><button type="button">Home</button></a>
+	</div>
+	<%
+		}
+	%>
+
 	<div id="error">
 		<!-- Print Error Message if any -->
 		<%
@@ -15,7 +29,7 @@
 			if (e != null) {
 		%>
 		<center>
-			<br /><font color="red"><%=e%></font><br /> <br />
+			<br /> <font color="red"><%=e%></font><br /> <br />
 		</center>
 		<%
 			}

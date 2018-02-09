@@ -8,18 +8,28 @@
 <title>Search</title>
 </head>
 <body>
+	<%
+		// if session is valid and user's role is admin
+		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
+			// display buttons:
+	%>
+	<div id="buttons" align="right">
+		<form method="post" action="logout">
+			<input type="submit" name="logout" value="Logout">
+		</form>
+		<a href="home.jsp"><button type="button">Home</button></a>
+	</div>
 	<div id="error">
 		<!-- Print Error Message if any -->
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
-			if (e != null) {
+				if (e != null) {
 		%>
 		<center>
-			<br />
-			<font color="red"><%=e%></font><br /> <br />
+			<br /> <font color="red"><%=e%></font><br /> <br />
 		</center>
 		<%
-			}
+			} // end error
 		%>
 	</div>
 	<div id="search">
@@ -50,5 +60,13 @@
 			<font color='red'>*</font> Case sensitive!
 		</form>
 	</div>
+	<%
+		} else { // no session
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+
+		}
+	%>
 </body>
 </html>
