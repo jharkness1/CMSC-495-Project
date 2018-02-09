@@ -48,8 +48,7 @@
 					<td>Value</td>
 					<td><input type="text" id="searchValue" value=""
 						name="searchValue" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed" required autofocus><font
-						color='red'>*</font></td>
+						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -57,7 +56,7 @@
 						name="searchUser"></td>
 				</tr>
 			</table>
-			<font color='red'>*</font> Case sensitive!
+
 		</form>
 	</div>
 	<%
