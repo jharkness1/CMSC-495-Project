@@ -105,12 +105,6 @@
 		<%
 			} // end if session was active
 		%>
-
-		<script type="text/javascript">
-			function openPage(pageURL) {
-				window.location.href = pageURL;
-			}
-		</script>
 	</table>
 </body>
 </html>
