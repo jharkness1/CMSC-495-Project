@@ -429,8 +429,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			// use prepared statements to avoid SQL Injection
 			String query = "SELECT firstname,lastname,email,company,"
-					+ "department,title,work_address,work_city,work_state,work_zip,phone "
-					+ "FROM profiles WHERE id=?";
+					+ "department,title,work_address,work_city,work_state,work_zip,phone " + "FROM profiles WHERE id=?";
 
 			PreparedStatement prepSt = null;
 			ResultSet rs = null;
@@ -523,8 +522,132 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-			// return null;
+
 		return ownProfile;
+	}
+
+	public UserProfile getUserInfoForUpdate(int id) {
+		UserProfile userInfoForUpdate = new UserProfile();
+
+		String firstname = "";
+		String lastname = "";
+		String email = "";
+		String company = "";
+		String department = "";
+		String title = "";
+		String work_a = "";
+		String work_c = "";
+		String work_s = "";
+		String work_z = "";
+		String phone = "";
+		String username = "";
+		String password = "";
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "SELECT firstname,lastname,email,company,"
+					+ "department,title,work_address,work_city,work_state,work_zip,phone,username,password "
+					+ "FROM profiles WHERE id=?";
+
+			PreparedStatement prepSt = null;
+			ResultSet rs = null;
+			try {
+				prepSt = conn.prepareStatement(query);
+				// bind parameter with SQL query
+				prepSt.setInt(1, id);
+
+				rs = prepSt.executeQuery();
+				// iterate over results, retrieve by column index
+				while (rs.next()) {
+					// sequence numbers of columns are like in the query
+					firstname = rs.getString(1);
+					lastname = rs.getString(2);
+					email = rs.getString(3);
+
+					// these fields can be null!
+					company = rs.getString(4);
+					if (company == null) {
+						// replace null with empty string
+						company = "";
+					}
+					department = rs.getString(5);
+					if (department == null) {
+						department = "";
+					}
+					title = rs.getString(6);
+					if (title == null) {
+						title = "";
+					}
+					work_a = rs.getString(7);
+					if (work_a == null) {
+						work_a = "";
+					}
+					work_c = rs.getString(8);
+					if (work_c == null) {
+						work_c = "";
+					}
+					work_s = rs.getString(9);
+					if (work_s == null) {
+						work_s = "";
+					}
+					work_z = rs.getString(10);
+					if (work_z == null) {
+						work_z = "";
+					}
+					phone = rs.getString(11);
+					if (phone == null) {
+						phone = "";
+					}
+					username = rs.getString(12);
+					password = rs.getString(13);
+					
+					// set appropriate fields to values from database
+					userInfoForUpdate.setId(id); // it is the same id as method's argument
+					userInfoForUpdate.setLastname(lastname);
+					userInfoForUpdate.setFirstname(firstname);
+					userInfoForUpdate.setEmail(email);
+					userInfoForUpdate.setCompany(company);
+					userInfoForUpdate.setDepartment(department);
+					userInfoForUpdate.setTitle(title);
+					userInfoForUpdate.setWork_address(work_a);
+					userInfoForUpdate.setWork_city(work_c);
+					userInfoForUpdate.setWork_state(work_s);
+					userInfoForUpdate.setWork_zip(work_z);
+					userInfoForUpdate.setPhone(phone);
+					userInfoForUpdate.setUsername(username);
+					userInfoForUpdate.setPassword(password);
+				} // end while
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+				if (rs != null) {
+					rs.close();
+				}
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL exception");
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println("Other exception");
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println("close conn exception");
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		return userInfoForUpdate;
 	}
 
 	@Override

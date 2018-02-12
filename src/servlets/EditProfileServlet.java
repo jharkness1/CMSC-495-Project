@@ -1,11 +1,16 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import daoimpl.UserProfileDaoImpl;
+import models.UserProfile;
 
 /**
  * Servlet implementation class EditProfileServlet
@@ -36,8 +41,14 @@ public class EditProfileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get the posted values from the user's profile view
 		int id  = Integer.valueOf((String) request.getParameter("id"));
-		
-		doGet(request, response);
+		// retrieve all user's information from the database
+		UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
+		UserProfile user = userProfileDaoImpl.getUserInfoForUpdate(id);
+		// save the info as a request parameter that will be sent to edit.jsp
+		request.setAttribute("userInfoForUpdate", user);
+		// redirect to edit.jsp
+		RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

@@ -12,7 +12,8 @@ public interface UserProfileDao {
 	ArrayList<UserProfile> getSearchResultsByName(String lastName); 
 	ArrayList<UserProfile> getSearchResultsByDept(String department); 
 	ArrayList<UserProfile> listAllResults(); 
-	UserProfile accessProfile(int id); 
+	UserProfile accessProfile(int id);
+	UserProfile getUserInfoForUpdate (int id);
 	String updateProfile(UserProfile user); 
 	boolean deleteUser(int id); 
 

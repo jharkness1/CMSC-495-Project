@@ -128,10 +128,10 @@
 						<td><input type="text" id="phone" value="" name="phone"
 							size="15" pattern="[0-9]*" title="Only numbers allowed"></td>
 					</tr>
-
-					<td></td>
-					<td><input type="reset" value="Reset" name="Reset"> <input
-						type="submit" value="Create Account" name="CreateAccount"></td>
+					<tr>
+						<td></td>
+						<td><input type="reset" value="Reset" name="Reset"> <input
+							type="submit" value="Create Account" name="CreateAccount"></td>
 					</tr>
 				</table>
 				<br> <font color='red'>*</font> Required fields<br />
