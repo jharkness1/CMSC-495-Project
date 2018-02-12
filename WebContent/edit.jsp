@@ -16,9 +16,9 @@
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		} else { // active session
-			if (request.getAttribute("userInfoForUpdate") != null) {
+			if (request.getAttribute("oldInfo") != null) {
 				// retrieve the request attribute with user info
-				user = (UserProfile) request.getAttribute("userInfoForUpdate");
+				user = (UserProfile) request.getAttribute("oldInfo");
 				// show logout button and Home button
 	%>
 	<div align="right">
@@ -28,8 +28,14 @@
 		<a href="home.jsp"><button type="button">Home</button></a>
 	</div>
 	<div id="updateProfile">
+		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
-			<input type="hidden" name="id" value="<%=user.getId()%>">
+			<%
+				// set the retrieved user's info as a request attribute to sent to UpdateProfileServlet
+						// to compare with new posted values
+						request.setAttribute("oldInfo", user);
+			%>
+
 			<table>
 				<tr>
 					<td>First Name:</td>

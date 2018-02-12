@@ -86,6 +86,122 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end userExists method
 
 	@Override
+	public boolean usernameExists(String username) {
+		boolean usernameExists = true;
+		int numberOfRows = 0;
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "SELECT COUNT(*) FROM profiles WHERE username=?";
+
+			PreparedStatement prepSt = null;
+			ResultSet rs = null;
+			try {
+				prepSt = conn.prepareStatement(query);
+				prepSt.setString(1, username);
+
+				rs = prepSt.executeQuery();
+				// iterate over results, retrieve by column index
+				while (rs.next()) {
+					numberOfRows = rs.getInt(1);
+					System.out.println("Number of users by that username equals " + numberOfRows);
+				}
+				// if the query returned number of rows other than 0, user already exists
+				if (numberOfRows > 0) {
+					usernameExists = true;
+				} else {
+					usernameExists = false;
+				}
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+				if (rs != null) {
+					rs.close();
+				}
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		System.out.println(usernameExists);
+		return usernameExists;
+	} // end usernameExists method
+
+	@Override
+	public boolean emailExists(String email) {
+		boolean emailExists = true;
+		int numberOfRows = 0;
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "SELECT COUNT(*) FROM profiles WHERE email=?";
+
+			PreparedStatement prepSt = null;
+			ResultSet rs = null;
+			try {
+				prepSt = conn.prepareStatement(query);
+				prepSt.setString(1, email);
+
+				rs = prepSt.executeQuery();
+				// iterate over results, retrieve by column index
+				while (rs.next()) {
+					numberOfRows = rs.getInt(1);
+					System.out.println("Number of users by that username equals " + numberOfRows);
+				}
+				// if the query returned number of rows other than 0, user already exists
+				if (numberOfRows > 0) {
+					emailExists = true;
+				} else {
+					emailExists = false;
+				}
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+				if (rs != null) {
+					rs.close();
+				}
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		System.out.println(emailExists);
+		return emailExists;
+	} // end emailExists method
+
+	@Override
 	/**
 	 * method to insert new user into database table Returns true if user was
 	 * successfully inserted Returns false if not or if any database error occurs
@@ -524,8 +640,13 @@ public class UserProfileDaoImpl implements UserProfileDao {
 		} // end clean up
 
 		return ownProfile;
-	}
+	} // end accessProfile method
 
+	@Override
+	/**
+	 * method to retrieve all user's information that can be updated from the
+	 * database (including username and password)
+	 */
 	public UserProfile getUserInfoForUpdate(int id) {
 		UserProfile userInfoForUpdate = new UserProfile();
 
@@ -603,7 +724,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					}
 					username = rs.getString(12);
 					password = rs.getString(13);
-					
+
 					// set appropriate fields to values from database
 					userInfoForUpdate.setId(id); // it is the same id as method's argument
 					userInfoForUpdate.setLastname(lastname);
@@ -648,7 +769,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} // end clean up
 		return userInfoForUpdate;
-	}
+	} // end getUserInfoForUpdate method
 
 	@Override
 	public String updateProfile(UserProfile user) {

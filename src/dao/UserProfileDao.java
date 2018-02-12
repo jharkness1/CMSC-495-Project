@@ -8,6 +8,8 @@ import models.UserProfile;
 public interface UserProfileDao {
 	
 	boolean userExists(String username, String email); 
+	boolean usernameExists(String username);
+	boolean emailExists(String email);
 	boolean insertUser(UserProfile user);
 	ArrayList<UserProfile> getSearchResultsByName(String lastName); 
 	ArrayList<UserProfile> getSearchResultsByDept(String department); 

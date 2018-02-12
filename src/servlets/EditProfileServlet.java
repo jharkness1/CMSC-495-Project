@@ -45,7 +45,7 @@ public class EditProfileServlet extends HttpServlet {
 		UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 		UserProfile user = userProfileDaoImpl.getUserInfoForUpdate(id);
 		// save the info as a request parameter that will be sent to edit.jsp
-		request.setAttribute("userInfoForUpdate", user);
+		request.setAttribute("oldInfo", user);
 		// redirect to edit.jsp
 		RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
 		dispatcher.forward(request, response);
