@@ -102,6 +102,16 @@ public class UpdateProfileServlet extends HttpServlet {
 						if (!email.equals(oldEmail)) {
 							// user would like to change email
 							System.out.println("You want to change email");
+							// check if new, given email already exists
+							if (userProfileDaoImpl.emailExists(email)) {
+								// don't approve further update
+								emailApproved = false;
+							} else {
+								// if new email does not exist in the database,
+								// approve further update
+								emailApproved = true;
+							}
+							// end approving email
 						} // end if user would like to change email
 						else { // user didn't want to change email
 							emailApproved = true;
@@ -113,7 +123,7 @@ public class UpdateProfileServlet extends HttpServlet {
 						else { // user didn't want to change username
 							usernameApproved = true;
 						} // end if user didn't want to change username
-						// proceed with the update only if both email and username are approved
+							// proceed with the update only if both email and username are approved
 						if (emailApproved && usernameApproved) {
 							// try to update
 						} // end if both email and username were approved
