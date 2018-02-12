@@ -30,12 +30,10 @@
 	<div id="updateProfile">
 		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
-			<%
-				// set the retrieved user's info as a request attribute to sent to UpdateProfileServlet
-						// to compare with new posted values
-						request.setAttribute("oldInfo", user);
-			%>
-
+			<!-- Remember old username and email and post it as hidden values to compare them with new ones later -->
+			<input type="hidden" name="oldUsername"
+				value="<%=user.getUsername()%>"> <input type="hidden"
+				name="oldEmail" value="<%=user.getEmail()%>">
 			<table>
 				<tr>
 					<td>First Name:</td>

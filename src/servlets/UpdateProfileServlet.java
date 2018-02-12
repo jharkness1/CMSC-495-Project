@@ -65,10 +65,9 @@ public class UpdateProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// get all posted fields from the createAccount form
-		// and retrieve the old user information from request attribute to compare with
-		// the posted values
-		userOldInfo = (UserProfile) request.getAttribute("oldInfo");
+		// get all posted fields from the updateProfile form
+		String oldUsername = request.getParameter("oldUsername");
+		String oldEmail = request.getParameter("oldEmail");
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
@@ -99,27 +98,14 @@ public class UpdateProfileServlet extends HttpServlet {
 				// if all fields contain safe, acceptable characters, check if password_confirm
 				// matches password
 				if (password.equals(password_confirm)) {
-					// check if user wants to change own username (avoid duplicates!)
-					if (username.equals(userOldInfo.getUsername())) {
-						// if user doesn't want to change username
-						System.out.println("You are not updating username");
-						// check if user wants to change email (avoid duplicates!)
-						if (email.equals(userOldInfo.getEmail())) {
-							// if user doesn't want to change email
-							System.out.println("You are not updating email");
-						} // end if user doesn't want to change email
-						else {
-							// if user wants to change email
-							System.out.println("You want to update email");
-							
-						} // end if user wanted to change email						
-					} // end if user doesn't want to change username
+					// check if user wants to change own email or username (avoid duplicates!)
+					if (email.equals(oldEmail) && username.equals(oldUsername)) {
+						System.out.println("You are not changing email and username");
+					} // end if user didn't want to change email or username
 					else {
-						// if user wants to change username
-						System.out.println("You want to update username");
-						// check if new, given username already exists in the database to avoid duplicates
-						
-					} // end if user wanted to change username
+						// if user wanted to change email or username
+						System.out.println("You want to change email and username");
+					}
 				} // end if password matched the password_confirm
 				else {
 					// display an error message above the form
