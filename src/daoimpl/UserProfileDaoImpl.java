@@ -107,7 +107,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
 					numberOfRows = rs.getInt(1);
-					System.out.println("Number of users by that username equals " + numberOfRows);
+//					System.out.println("Number of users by that username equals " + numberOfRows);
 				}
 				// if the query returned number of rows other than 0, user already exists
 				if (numberOfRows > 0) {
@@ -139,7 +139,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-		System.out.println(usernameExists);
+//		System.out.println(usernameExists);
 		return usernameExists;
 	} // end usernameExists method
 
@@ -165,7 +165,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
 					numberOfRows = rs.getInt(1);
-					System.out.println("Number of users by that username equals " + numberOfRows);
+//					System.out.println("Number of users by that username equals " + numberOfRows);
 				}
 				// if the query returned number of rows other than 0, user already exists
 				if (numberOfRows > 0) {
@@ -197,7 +197,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-		System.out.println(emailExists);
+//		System.out.println(emailExists);
 		return emailExists;
 	} // end emailExists method
 

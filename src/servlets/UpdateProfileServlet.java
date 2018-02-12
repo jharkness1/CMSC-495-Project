@@ -119,6 +119,16 @@ public class UpdateProfileServlet extends HttpServlet {
 						if (!username.equals(oldUsername)) {
 							// user would like to change username
 							System.out.println("You want to change username");
+							// check if new, given username already exists
+							if (userProfileDaoImpl.usernameExists(username)) {
+								// don't approve further update
+								usernameApproved = false;
+							} else {
+								// if new username does not exist in the database,
+								// approve further update
+								usernameApproved = true;
+							}
+							// end approving username
 						} // end if user would like to change username
 						else { // user didn't want to change username
 							usernameApproved = true;
@@ -126,9 +136,15 @@ public class UpdateProfileServlet extends HttpServlet {
 							// proceed with the update only if both email and username are approved
 						if (emailApproved && usernameApproved) {
 							// try to update
+							System.out.println("Good to go!");
 						} // end if both email and username were approved
 						else {
 							// don't update! duplicate!
+							// display an error message
+							request.setAttribute("ErrorMessage",
+									"Someone already registered given email or username. Try again.");
+							RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+							dispatcher.forward(request, response);
 						}
 					}
 				} // end if password matched the password_confirm
