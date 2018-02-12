@@ -84,6 +84,7 @@ public class UpdateProfileServlet extends HttpServlet {
 				if (password.equals(password_confirm)) {
 					// check if user wants to change own email or username (avoid duplicates!)
 					if (email.equals(oldEmail) && username.equals(oldUsername)) {
+						// if user doesn't want to change neither username nor email
 						System.out.println("You are not changing email and username");
 						// try to update profile
 						String message = userProfileDaoImpl.updateProfile(user, oldUsername);
@@ -93,7 +94,32 @@ public class UpdateProfileServlet extends HttpServlet {
 					} // end if user didn't want to change email or username
 					else {
 						// if user wanted to change email or username
-						System.out.println("You want to change email and username");
+						System.out.println("You want to change email or username");
+						// check which one user wants to change and verify if there won't be any
+						// duplicates in the database
+						boolean emailApproved = false;
+						boolean usernameApproved = false;
+						if (!email.equals(oldEmail)) {
+							// user would like to change email
+							System.out.println("You want to change email");
+						} // end if user would like to change email
+						else { // user didn't want to change email
+							emailApproved = true;
+						} // end if user didn't want to change email
+						if (!username.equals(oldUsername)) {
+							// user would like to change username
+							System.out.println("You want to change username");
+						} // end if user would like to change username
+						else { // user didn't want to change username
+							usernameApproved = true;
+						} // end if user didn't want to change username
+						// proceed with the update only if both email and username are approved
+						if (emailApproved && usernameApproved) {
+							// try to update
+						} // end if both email and username were approved
+						else {
+							// don't update! duplicate!
+						}
 					}
 				} // end if password matched the password_confirm
 				else {
