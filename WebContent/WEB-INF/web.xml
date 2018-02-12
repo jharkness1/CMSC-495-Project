@@ -48,6 +48,14 @@
 		<url-pattern>/accessProfile</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>EditProfileServlet</servlet-name>
+		<servlet-class>servlets.EditProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditProfileServlet</servlet-name>
+		<url-pattern>/editProfile</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>UpdateProfileServlet</servlet-name>
 		<servlet-class>servlets.UpdateProfileServlet</servlet-class>
 	</servlet>

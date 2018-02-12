@@ -99,8 +99,12 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><button type="button" onclick="openPage('edit.jsp') "
-					style="height: 25px; width: 150px;">Update</button></td>
+			<!-- 			<td><button type="button" onclick="openPage('edit.jsp') " -->
+			<!-- 					style="height: 25px; width: 150px;">Update</button></td> -->
+			<td><form method="post" action="editProfile">
+				<input type="hidden" name="id" value="<%=user.getId()%>"> <input
+					type="submit" value="Update" name="edit">
+			</form></td>
 		</tr>
 		<%
 			} // end if session was active

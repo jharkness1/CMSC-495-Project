@@ -34,7 +34,9 @@ public class EditProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// get the posted values from the user's profile view
+		int id  = Integer.valueOf((String) request.getParameter("id"));
+		
 		doGet(request, response);
 	}
 
