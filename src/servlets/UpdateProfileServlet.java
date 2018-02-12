@@ -85,23 +85,21 @@ public class UpdateProfileServlet extends HttpServlet {
 					// check if user wants to change own email or username (avoid duplicates!)
 					if (email.equals(oldEmail) && username.equals(oldUsername)) {
 						// if user doesn't want to change neither username nor email
-						System.out.println("You are not changing email and username");
+//						System.out.println("You are not changing email and username");
 						// try to update profile
 						String message = userProfileDaoImpl.updateProfile(user, oldUsername);
 						request.setAttribute("ErrorMessage", message);
-						RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-						dispatcher.forward(request, response);
 					} // end if user didn't want to change email or username
 					else {
 						// if user wanted to change email or username
-						System.out.println("You want to change email or username");
+//						System.out.println("You want to change email or username");
 						// check which one user wants to change and verify if there won't be any
 						// duplicates in the database
 						boolean emailApproved = false;
 						boolean usernameApproved = false;
 						if (!email.equals(oldEmail)) {
 							// user would like to change email
-							System.out.println("You want to change email");
+//							System.out.println("You want to change email");
 							// check if new, given email already exists
 							if (userProfileDaoImpl.emailExists(email)) {
 								// don't approve further update
@@ -118,7 +116,7 @@ public class UpdateProfileServlet extends HttpServlet {
 						} // end if user didn't want to change email
 						if (!username.equals(oldUsername)) {
 							// user would like to change username
-							System.out.println("You want to change username");
+//							System.out.println("You want to change username");
 							// check if new, given username already exists
 							if (userProfileDaoImpl.usernameExists(username)) {
 								// don't approve further update
@@ -136,25 +134,21 @@ public class UpdateProfileServlet extends HttpServlet {
 							// proceed with the update only if both email and username are approved
 						if (emailApproved && usernameApproved) {
 							// try to update
-							System.out.println("Good to go!");
+//							System.out.println("Good to go!");
+							String message = userProfileDaoImpl.updateProfile(user, oldUsername);
+							request.setAttribute("ErrorMessage", message);
 						} // end if both email and username were approved
 						else {
 							// don't update! duplicate!
 							// display an error message
 							request.setAttribute("ErrorMessage",
 									"Someone already registered given email or username. Try again.");
-							RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-							dispatcher.forward(request, response);
 						}
 					}
 				} // end if password matched the password_confirm
 				else {
 					// display an error message
 					request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
-					// set the request attribute to user's info
-					request.setAttribute("userInfo", user);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
-					dispatcher.forward(request, response);
 				} // end if passwords didn't match
 
 			} // end if all fields were validated
@@ -162,18 +156,15 @@ public class UpdateProfileServlet extends HttpServlet {
 				// if user input was not valid
 				// display an error message
 				request.setAttribute("ErrorMessage", "Wrong input.Try again.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-				dispatcher.forward(request, response);
 			}
 
 		} // end if all required fields have been filled out
 		else {
 			// display an error message
 			request.setAttribute("ErrorMessage", "Required fields cannot be empty.Try again.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-			dispatcher.forward(request, response);
 		} // end if not all required fields have been filled
-
+		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		dispatcher.forward(request, response);
 	} // end doPost
 
 }

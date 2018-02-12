@@ -27,19 +27,6 @@
 		</form>
 		<a href="home.jsp"><button type="button">Home</button></a>
 	</div>
-	<div id="error">
-		<!-- Print Error Message if any -->
-		<%
-			String e = (String) request.getAttribute("ErrorMessage");
-					if (e != null) {
-		%>
-		<center>
-			<br /> <font color="red"><%=e%></font><br /> <br />
-		</center>
-		<%
-			} // end error
-		%>
-	</div>
 	<div id="updateProfile">
 		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
@@ -143,7 +130,8 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Update" name="updateProfile"></td>
+					<td><a href="home.jsp"><button type="button">Cancel</button></a><input
+						type="submit" value="Update" name="updateProfile"></td>
 				</tr>
 			</table>
 			<br> <font color='red'>*</font> Required fields<br />
