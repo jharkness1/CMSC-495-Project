@@ -16,7 +16,7 @@ public interface UserProfileDao {
 	ArrayList<UserProfile> listAllResults(); 
 	UserProfile accessProfile(int id);
 	UserProfile getUserInfoForUpdate (int id);
-	String updateProfile(UserProfile user); 
+	String updateProfile(UserProfile user, String oldUsername); 
 	boolean deleteUser(int id); 
 
 }

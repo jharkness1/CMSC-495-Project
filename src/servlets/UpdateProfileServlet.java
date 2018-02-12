@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daoimpl.UserProfileDaoImpl;
 import models.UserProfile;
 import utilities.Validator;
 
@@ -18,7 +19,7 @@ import utilities.Validator;
 @WebServlet("/UpdateProfileServlet")
 public class UpdateProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserProfile userOldInfo = null;
+	private UserProfile user = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -26,27 +27,6 @@ public class UpdateProfileServlet extends HttpServlet {
 	public UpdateProfileServlet() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Description: helper method that will set the appropriate error message to
-	 * display above the updateProfile form this method will also set back the
-	 * request attribute to old user's info
-	 * 
-	 * @param request
-	 * @param response
-	 * @param errorMessage
-	 * @param object
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void showError(HttpServletRequest request, HttpServletResponse response, String errorMessage, Object object)
-			throws ServletException, IOException {
-		request.setAttribute("ErrorMessage", errorMessage);
-		// set back the request attribute to old user's info
-		request.setAttribute("oldInfo", object);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -95,12 +75,21 @@ public class UpdateProfileServlet extends HttpServlet {
 					&& Validator.validateOnlyLettersAndNumbers(title) && Validator.validateAddress(streetAddr)
 					&& Validator.validateOnlyLetters(city) && Validator.validateState(state)
 					&& Validator.validateZip(zip) && Validator.validatePhone(phone)) {
+				// create UserProfile object
+				user = new UserProfile(firstName, lastName, email, company, department, title, streetAddr, city, state,
+						zip, phone, username, password);
+				UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 				// if all fields contain safe, acceptable characters, check if password_confirm
 				// matches password
 				if (password.equals(password_confirm)) {
 					// check if user wants to change own email or username (avoid duplicates!)
 					if (email.equals(oldEmail) && username.equals(oldUsername)) {
 						System.out.println("You are not changing email and username");
+						// try to update profile
+						String message = userProfileDaoImpl.updateProfile(user, oldUsername);
+						request.setAttribute("ErrorMessage", message);
+						RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+						dispatcher.forward(request, response);
 					} // end if user didn't want to change email or username
 					else {
 						// if user wanted to change email or username
@@ -108,21 +97,29 @@ public class UpdateProfileServlet extends HttpServlet {
 					}
 				} // end if password matched the password_confirm
 				else {
-					// display an error message above the form
-					showError(request, response, "Confirmed password did not match your password.", userOldInfo);
+					// display an error message
+					request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
+					// set the request attribute to user's info
+					request.setAttribute("userInfo", user);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+					dispatcher.forward(request, response);
 				} // end if passwords didn't match
 
 			} // end if all fields were validated
 			else {
 				// if user input was not valid
-				// display an error message above the form
-				showError(request, response, "Wrong input. Check if all form fields are correct.", userOldInfo);
+				// display an error message
+				request.setAttribute("ErrorMessage", "Wrong input.Try again.");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+				dispatcher.forward(request, response);
 			}
 
 		} // end if all required fields have been filled out
 		else {
-			// display an error message above the form
-			showError(request, response, "Check if all required fields are filled out.", userOldInfo);
+			// display an error message
+			request.setAttribute("ErrorMessage", "Required fields cannot be empty.Try again.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
 		} // end if not all required fields have been filled
 
 	} // end doPost

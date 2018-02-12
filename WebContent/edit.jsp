@@ -16,9 +16,9 @@
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		} else { // active session
-			if (request.getAttribute("oldInfo") != null) {
+			if (request.getAttribute("userInfo") != null) {
 				// retrieve the request attribute with user info
-				user = (UserProfile) request.getAttribute("oldInfo");
+				user = (UserProfile) request.getAttribute("userInfo");
 				// show logout button and Home button
 	%>
 	<div align="right">
@@ -26,6 +26,19 @@
 			<input type="submit" name="logout" value="Logout">
 		</form>
 		<a href="home.jsp"><button type="button">Home</button></a>
+	</div>
+	<div id="error">
+		<!-- Print Error Message if any -->
+		<%
+			String e = (String) request.getAttribute("ErrorMessage");
+					if (e != null) {
+		%>
+		<center>
+			<br /> <font color="red"><%=e%></font><br /> <br />
+		</center>
+		<%
+			} // end error
+		%>
 	</div>
 	<div id="updateProfile">
 		<h3>Your Current Information</h3>

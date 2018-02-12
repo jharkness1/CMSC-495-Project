@@ -772,10 +772,70 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end getUserInfoForUpdate method
 
 	@Override
-	public String updateProfile(UserProfile user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/** 
+	 * method to update user profile information in the database
+	 * returns string message whether there was no error during update
+	 */
+	public String updateProfile(UserProfile user, String oldUsername) {
+		// set message to error by default, 
+		// update it to success later
+		String message = "Profile could not be updated.";
+
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "UPDATE profiles SET firstname=?, lastname=?, email=?, "
+					+ "company=?, department=?, title=?, work_address=?, work_city=?, "
+					+ "work_state=?, work_zip=?, phone=?, username=?, password=? WHERE username=?";
+
+			PreparedStatement prepSt = null;
+
+			try {
+				prepSt = conn.prepareStatement(query);
+				prepSt.setString(1, user.getFirstname());
+				prepSt.setString(2, user.getLastname());
+				prepSt.setString(3, user.getEmail());
+				prepSt.setString(4, user.getCompany());
+				prepSt.setString(5, user.getDepartment());
+				prepSt.setString(6, user.getTitle());
+				prepSt.setString(7, user.getWork_address());
+				prepSt.setString(8, user.getWork_city());
+				prepSt.setString(9, user.getWork_state());
+				prepSt.setString(10, user.getWork_zip());
+				prepSt.setString(11, user.getPhone());
+				prepSt.setString(12, user.getUsername());
+				prepSt.setString(13, user.getPassword());
+				prepSt.setString(14, oldUsername);
+
+				prepSt.executeUpdate();
+				message = "Success! Profile updated.";
+
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		return message;
+	} // end updateProfile method
 
 	@Override
 	public boolean deleteUser(int id) {

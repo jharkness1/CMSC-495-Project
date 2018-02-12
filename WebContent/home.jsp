@@ -44,6 +44,19 @@
 			} // end if user is admin
 		%>
 	</div>
+	<div id="error">
+		<!-- Print Error Message if any -->
+		<%
+			String e = (String) request.getAttribute("ErrorMessage");
+				if (e != null) {
+		%>
+		<center>
+			<br /> <font color="red"><%=e%></font><br /> <br />
+		</center>
+		<%
+			} // end error
+		%>
+	</div>
 	<h3 align="left">
 		<font><strong>View Profile</strong></font>
 		<!-- <button type="button" onclick=""
@@ -102,9 +115,9 @@
 			<!-- 			<td><button type="button" onclick="openPage('edit.jsp') " -->
 			<!-- 					style="height: 25px; width: 150px;">Update</button></td> -->
 			<td><form method="post" action="editProfile">
-				<input type="hidden" name="id" value="<%=user.getId()%>"> <input
-					type="submit" value="Update" name="edit">
-			</form></td>
+					<input type="hidden" name="id" value="<%=user.getId()%>"> <input
+						type="submit" value="Update" name="edit">
+				</form></td>
 		</tr>
 		<%
 			} // end if session was active
