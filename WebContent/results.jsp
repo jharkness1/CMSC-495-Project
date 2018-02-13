@@ -10,6 +10,7 @@
 <title>Results</title>
 </head>
 <body>
+	<%@include file="header.html"%>
 	<%!ArrayList<UserProfile> results;%>
 	<%
 		// if session is valid and user's role is admin
@@ -63,6 +64,7 @@
 				} // end for loop
 			%>
 		</table>
+		<br /> <br />
 		<%
 			} // end if attribure searchResults was set
 					else {
@@ -82,6 +84,7 @@
 				dispatcher.forward(request, response);
 			}
 		%>
-	
+	</div>
+	<%@include file="footer.html"%>
 </body>
 </html>

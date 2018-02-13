@@ -8,6 +8,7 @@
 <title>Create User Account</title>
 </head>
 <body>
+	<%@include file="header.html"%>
 	<%-- If the session is active allow to logout or return to Home page --%>
 	<%
 		if (session.getAttribute("ownProfile") != null) {
@@ -144,5 +145,6 @@
 			page</button></a>
 	<br />
 	<br />
+	<%@include file="footer.html"%>
 </body>
 </html>

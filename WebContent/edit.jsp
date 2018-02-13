@@ -9,6 +9,7 @@
 <title>Edit Profile</title>
 </head>
 <body>
+	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
 	<%
@@ -135,6 +136,7 @@
 				</tr>
 			</table>
 			<br> <font color='red'>*</font> Required fields<br />
+			<br />
 
 		</form>
 	</div>
@@ -147,5 +149,6 @@
 			}
 		} // end if session was active
 	%>
+	<%@include file="footer.html"%>
 </body>
 </html>

@@ -14,6 +14,7 @@
 <title>Login</title>
 </head>
 <body>
+	<%@include file="header.html"%>
 	<%-- Simulate Login Form --%>
 	<div id="login">
 		<h2>Login</h2>
@@ -45,16 +46,20 @@
 				</tr>
 			</table>
 		</form>
-		<!-- Print Error Message if any -->
+	</div>
+	<!-- Print Error Message if any -->
+	<div id="error">
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
 			if (e != null) {
 		%>
-		<br /> <font color="red"><%=e%></font><br />
+		<br />
+		<%=e%><br />
 		<%
 			}
 		%>
-
+	</div>
+	<div>
 		<h5>
 			Privacy Disclaimer:<br /> This system is for the use of authorized
 			users only.<br /> Individuals using this computer system without<br />
@@ -64,6 +69,6 @@
 		</h5>
 
 	</div>
-
+	<%@include file="footer.html"%>
 </body>
 </html>

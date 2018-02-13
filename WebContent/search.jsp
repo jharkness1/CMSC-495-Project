@@ -8,6 +8,7 @@
 <title>Search</title>
 </head>
 <body>
+	<%@include file="header.html"%>
 	<%
 		// if session is valid and user's role is admin
 		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
@@ -55,7 +56,7 @@
 					<td align="right"><input type="submit" value="Search"
 						name="searchUser"></td>
 				</tr>
-			</table>
+			</table><br /><br />
 
 		</form>
 	</div>
@@ -67,5 +68,6 @@
 
 		}
 	%>
+	<%@include file="footer.html"%>
 </body>
 </html>

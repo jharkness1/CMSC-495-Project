@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
 	<%
@@ -57,71 +58,75 @@
 			} // end error
 		%>
 	</div>
-	<h3 align="left">
-		<font><strong>View Profile</strong></font>
-		<!-- <button type="button" onclick=""
+	<div id="home">
+		<h3 align="left">
+			<font><strong>View Profile</strong></font>
+			<!-- <button type="button" onclick=""
 			style="float: right; height: 25px; width: 150px;">Logout</button> -->
-	</h3>
+		</h3>
 
-	<table id="profile" align="left" cellpadding="6" cellspacing="15"
-		border="0">
-		<tr>
-			<td><b>First Name</b></td>
-			<td><%=user.getFirstname()%></td>
-		</tr>
-		<tr>
-			<td><b>Last Name</b></td>
-			<td><%=user.getLastname()%></td>
-		</tr>
+		<table id="profile">
+			<tr>
+				<td><b>First Name</b></td>
+				<td><%=user.getFirstname()%></td>
+			</tr>
+			<tr>
+				<td><b>Last Name</b></td>
+				<td><%=user.getLastname()%></td>
+			</tr>
 
-		<tr>
-			<td><b>Email</b></td>
-			<td><%=user.getEmail()%></td>
-		</tr>
-		<tr>
-			<td><b>Company</b></td>
-			<td><%=user.getCompany()%></td>
-		</tr>
-		<tr>
-			<td><b>Department</b></td>
-			<td><%=user.getDepartment()%></td>
-		</tr>
-		<tr>
-			<td><b>Title</b></td>
-			<td><%=user.getTitle()%></td>
-		</tr>
-		<tr>
-			<td><b>Work Address</b></td>
-			<td><%=user.getWork_address()%></td>
-		</tr>
-		<tr>
-			<td><b>Work City</b></td>
-			<td><%=user.getWork_city()%></td>
-		</tr>
-		<tr>
-			<td><b>Work State</b></td>
-			<td><%=user.getWork_state()%></td>
-		</tr>
-		<tr>
-			<td><b>Work Zip Code</b></td>
-			<td><%=user.getWork_zip()%></td>
-		</tr>
-		<tr>
-			<td><b>Phone</b></td>
-			<td><%=user.getPhone()%></td>
-		</tr>
-		<tr>
-			<td></td>
-			<!-- 			<td><button type="button" onclick="openPage('edit.jsp') " -->
-			<!-- 					style="height: 25px; width: 150px;">Update</button></td> -->
-			<td><form method="post" action="editProfile">
-					<input type="hidden" name="id" value="<%=user.getId()%>"> <input
-						type="submit" value="Update" name="edit">
-				</form></td>
-		</tr>
-		<%
-			} // end if session was active
-		%>
-	</table>
+			<tr>
+				<td><b>Email</b></td>
+				<td><%=user.getEmail()%></td>
+			</tr>
+			<tr>
+				<td><b>Company</b></td>
+				<td><%=user.getCompany()%></td>
+			</tr>
+			<tr>
+				<td><b>Department</b></td>
+				<td><%=user.getDepartment()%></td>
+			</tr>
+			<tr>
+				<td><b>Title</b></td>
+				<td><%=user.getTitle()%></td>
+			</tr>
+			<tr>
+				<td><b>Work Address</b></td>
+				<td><%=user.getWork_address()%></td>
+			</tr>
+			<tr>
+				<td><b>Work City</b></td>
+				<td><%=user.getWork_city()%></td>
+			</tr>
+			<tr>
+				<td><b>Work State</b></td>
+				<td><%=user.getWork_state()%></td>
+			</tr>
+			<tr>
+				<td><b>Work Zip Code</b></td>
+				<td><%=user.getWork_zip()%></td>
+			</tr>
+			<tr>
+				<td><b>Phone</b></td>
+				<td><%=user.getPhone()%></td>
+			</tr>
+			<tr>
+				<td></td>
+				<!-- 			<td><button type="button" onclick="openPage('edit.jsp') " -->
+				<!-- 					style="height: 25px; width: 150px;">Update</button></td> -->
+				<td><form method="post" action="editProfile">
+						<input type="hidden" name="id" value="<%=user.getId()%>">
+						<input type="submit" value="Update" name="edit">
+					</form></td>
+			</tr>
+			<%
+				} // end if session was active
+			%>
+		</table>
+		<br />
+		<br />
+	</div>
+	<%@include file="footer.html"%>
 </body>
 </html>
