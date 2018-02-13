@@ -22,7 +22,7 @@
 				user = (UserProfile) request.getAttribute("userInfo");
 				// show logout button and Home button
 	%>
-	<div align="right">
+	<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
 		</form>

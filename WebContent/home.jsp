@@ -24,7 +24,7 @@
 			user = (UserProfile) session.getAttribute("ownProfile");
 			// show logout button for everyone
 	%>
-	<div align="right">
+	<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
 		</form>
@@ -39,7 +39,7 @@
 		<form method="post" action="listAll">
 			<input type="submit" name="listAll" value="List All Users">
 		</form>
-		<a href="search.jsp"><button type="button">Search</button></a><br>
+		<a href="search.jsp"><button type="button">Search</button></a>
 		<a href="insert.jsp"><button type="button">Create Account</button></a>
 		<%
 			} // end if user is admin

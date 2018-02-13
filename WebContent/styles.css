@@ -17,6 +17,22 @@ h2, h3, h5 {
 	padding: 10px;
 }
 
+#buttons {
+	overflow: hidden;
+}
+
+#buttons a, form {
+	float: top;
+	display: block;
+	text-align: right;
+}
+
+.buttons {
+	position: fixed;
+	top: 40;
+	right: 0;
+}
+
 #error {
 	text-align: center;
 	color: red;

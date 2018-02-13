@@ -14,7 +14,7 @@
 		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
 			// display buttons:
 	%>
-	<div id="buttons" align="right">
+	<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
 		</form>
