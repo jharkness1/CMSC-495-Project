@@ -12,7 +12,7 @@ body {
 	font-family: "Times New Roman", Times, serif;
 }
 
-h2, h5 {
+h2, h3, h5 {
 	text-align: center;
 	padding: 10px;
 }
@@ -23,14 +23,33 @@ h2, h5 {
 	padding: 10px;
 }
 
-table#login {
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table#profile, table#results {
 	border-style: ridge;
 	border-width: 10px;
 	padding: 10px;
 	margin: auto;
+	padding: 10px;
 }
 
-#login {
+table#login, table#search, table#editProfile, table#createAccount {
+	border-style: ridge;
+	border-width: 10px;
+	background-color: white;
+	padding: 10px;
+	margin: auto;
+}
+
+.space {
+	padding: 10px;
+	text-align: center;
+}
+
+#login, #home, #updateProfile, #search, #results, #createAccount {
 	margin-left: auto;
 	margin-right: auto;
 }

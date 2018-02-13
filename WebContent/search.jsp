@@ -26,15 +26,13 @@
 			String e = (String) request.getAttribute("ErrorMessage");
 				if (e != null) {
 		%>
-		<center>
-			<br /> <font color="red"><%=e%></font><br /> <br />
-		</center>
+		<br /><%=e%>
 		<%
 			} // end error
 		%>
 	</div>
 	<div id="search">
-		<h2>Search</h2>
+		<h3>Search</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="searchUser">
 			<table id="search">
@@ -56,7 +54,9 @@
 					<td align="right"><input type="submit" value="Search"
 						name="searchUser"></td>
 				</tr>
-			</table><br /><br />
+			</table>
+			<br />
+			<br />
 
 		</form>
 	</div>

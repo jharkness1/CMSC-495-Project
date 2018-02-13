@@ -35,7 +35,7 @@
 			<input type="hidden" name="oldUsername"
 				value="<%=user.getUsername()%>"> <input type="hidden"
 				name="oldEmail" value="<%=user.getEmail()%>">
-			<table>
+			<table id="editProfile">
 				<tr>
 					<td>First Name:</td>
 					<td><input type="text" id="firstName"
@@ -129,14 +129,19 @@
 						name="phone" size="15" pattern="[0-9]*"
 						title="Only numbers allowed"></td>
 				</tr>
+
+			</table>
+			<br>
+			<table>
 				<tr>
-					<td></td>
-					<td><a href="home.jsp"><button type="button">Cancel</button></a><input
+					<td class="space"><font color='red'>*</font> Required fields</td>
+				</tr>
+				<tr>
+					<td class="space"><a href="home.jsp"><button type="button">Cancel</button></a><input
 						type="submit" value="Update" name="updateProfile"></td>
 				</tr>
 			</table>
-			<br> <font color='red'>*</font> Required fields<br />
-			<br />
+			<br /> <br />
 
 		</form>
 	</div>

@@ -32,7 +32,7 @@
 				if (results.size() > 0) {
 	%>
 	<div id="results">
-		<h2>Results</h2>
+		<h3>Results</h3>
 		<table id="results">
 			<tr>
 				<th>ID</th>
@@ -48,14 +48,14 @@
 				<form method="post" action="accessProfile">
 					<input type="hidden" name="id" value="<%=u.getId()%>">
 				</form>
-				<td><%=u.getId()%></td>
-				<td><%=u.getLastname()%></td>
-				<td><%=u.getFirstname()%></td>
-				<td><%=u.getEmail()%></td>
-				<td><%=u.getDepartment()%></td>
-				<td><input type="submit" value="Access Profile"
+				<td class="space"><%=u.getId()%></td>
+				<td class="space"><%=u.getLastname()%></td>
+				<td class="space"><%=u.getFirstname()%></td>
+				<td class="space"><%=u.getEmail()%></td>
+				<td class="space"><%=u.getDepartment()%></td>
+				<td class="space"><input type="submit" value="Access Profile"
 					name="accessProfile"></td>
-				<td><form method="post" action="delete">
+				<td class="space"><form method="post" action="delete">
 						<input type="hidden" name="id" value="<%=u.getId()%>"> <input
 							type="submit" value="Delete" name="delete">
 					</form></td>

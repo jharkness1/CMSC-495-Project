@@ -51,19 +51,13 @@
 			String e = (String) request.getAttribute("ErrorMessage");
 				if (e != null) {
 		%>
-		<center>
-			<br /> <font color="red"><%=e%></font><br /> <br />
-		</center>
+		<br /><%=e%>
 		<%
 			} // end error
 		%>
 	</div>
 	<div id="home">
-		<h3 align="left">
-			<font><strong>View Profile</strong></font>
-			<!-- <button type="button" onclick=""
-			style="float: right; height: 25px; width: 150px;">Logout</button> -->
-		</h3>
+		<h3>View Profile</h3>
 
 		<table id="profile">
 			<tr>
@@ -111,11 +105,12 @@
 				<td><b>Phone</b></td>
 				<td><%=user.getPhone()%></td>
 			</tr>
+		</table>
+		<br />
+		<table>
 			<tr>
 				<td></td>
-				<!-- 			<td><button type="button" onclick="openPage('edit.jsp') " -->
-				<!-- 					style="height: 25px; width: 150px;">Update</button></td> -->
-				<td><form method="post" action="editProfile">
+				<td class="space"><form method="post" action="editProfile">
 						<input type="hidden" name="id" value="<%=user.getId()%>">
 						<input type="submit" value="Update" name="edit">
 					</form></td>
@@ -124,8 +119,7 @@
 				} // end if session was active
 			%>
 		</table>
-		<br />
-		<br />
+		<br /> <br />
 	</div>
 	<%@include file="footer.html"%>
 </body>

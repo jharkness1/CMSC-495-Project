@@ -17,7 +17,7 @@
 	<%@include file="header.html"%>
 	<%-- Simulate Login Form --%>
 	<div id="login">
-		<h2>Login</h2>
+		<h3>Login</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="authenticate">
 			<table id="login">
