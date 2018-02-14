@@ -40,27 +40,27 @@
 			<table id="editProfile">
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="firstName"
+					<td class="spaceLeft"><input type="text" id="firstName"
 						value="<%=user.getFirstname()%>" name="firstName" size="30"
 						pattern="[A-Za-z ]*" title="Only letters allowed" required
 						autofocus><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lastName"
+					<td class="spaceLeft"><input type="text" id="lastName"
 						value="<%=user.getLastname()%>" name="lastName" size="30"
 						pattern="[A-Za-z ]*" title="Only letters allowed" required><font
 						color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input type="email" id="email" name="email"
+					<td class="spaceLeft"><input type="email" id="email" name="email"
 						value="<%=user.getEmail()%>" size="30" title="myemail@domain.com"
 						required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" id="username" name="username"
+					<td class="spaceLeft"><input type="text" id="username" name="username"
 						value="<%=user.getUsername()%>" size="30" pattern="[A-Za-z-0-9]*"
 						title="Only letters and numbers allowed" required><font
 						color='red'>*</font></td>
@@ -68,7 +68,7 @@
 				<tr>
 					<td>Password:</td>
 					<!-- At least 8 characters long! -->
-					<td><input type="password" id="password" name="password"
+					<td class="spaceLeft"><input type="password" id="password" name="password"
 						value="<%=user.getPassword()%>" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>Confirm Password:</td>
-					<td><input type="password" id="password_confirm"
+					<td class="spaceLeft"><input type="password" id="password_confirm"
 						name="password_confirm" value="<%=user.getPassword()%>" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
@@ -84,50 +84,50 @@
 				</tr>
 				<tr>
 					<td>Company:</td>
-					<td><input type="text" id="company" name="company"
+					<td class="spaceLeft"><input type="text" id="company" name="company"
 						value="<%=user.getCompany()%>" size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Department:</td>
-					<td><input type="text" id="department" name="department"
+					<td class="spaceLeft"><input type="text" id="department" name="department"
 						value="<%=user.getDepartment()%>" size="30"
 						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Job Title:</td>
-					<td><input type="text" id="title" name="title"
+					<td class="spaceLeft"><input type="text" id="title" name="title"
 						value="<%=user.getTitle()%>" size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Address:</td>
-					<td><input type="text" id="streetAddr"
+					<td class="spaceLeft"><input type="text" id="streetAddr"
 						value="<%=user.getWork_address()%>" name="streetAddr" size="50"
 						pattern="[A-Za-z-0-9.# ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work City:</td>
-					<td><input type="text" id="city"
+					<td class="spaceLeft"><input type="text" id="city"
 						value="<%=user.getWork_city()%>" name="city" size="30"
 						pattern="[A-Za-z ]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work State:</td>
-					<td><input type="text" id="state"
+					<td class="spaceLeft"><input type="text" id="state"
 						value="<%=user.getWork_state()%>" name="state" size="2"
 						pattern="[A-Za-z]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Zip Code:</td>
-					<td><input type="text" id="zip"
+					<td class="spaceLeft"><input type="text" id="zip"
 						value="<%=user.getWork_zip()%>" name="zip" size="5"
 						pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Phone:</td>
-					<td><input type="text" id="phone" value="<%=user.getPhone()%>"
+					<td class="spaceLeft"><input type="text" id="phone" value="<%=user.getPhone()%>"
 						name="phone" size="15" pattern="[0-9]*"
 						title="Only numbers allowed"></td>
 				</tr>
@@ -136,10 +136,10 @@
 			<br>
 			<table>
 				<tr>
-					<td class="space"><font color='red'>*</font> Required fields</td>
+					<td class="spaceCenter"><font color='red'>*</font> Required fields</td>
 				</tr>
 				<tr>
-					<td class="space"><a href="home.jsp"><button type="button">Cancel</button></a><input
+					<td class="spaceCenter"><a href="home.jsp"><button type="button">Cancel</button></a><input
 						type="submit" value="Update" name="updateProfile"></td>
 				</tr>
 			</table>

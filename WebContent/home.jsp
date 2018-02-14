@@ -39,8 +39,8 @@
 		<form method="post" action="listAll">
 			<input type="submit" name="listAll" value="List All Users">
 		</form>
-		<a href="search.jsp"><button type="button">Search</button></a>
-		<a href="insert.jsp"><button type="button">Create Account</button></a>
+		<a href="search.jsp"><button type="button">Search</button></a> <a
+			href="insert.jsp"><button type="button">Create Account</button></a>
 		<%
 			} // end if user is admin
 		%>
@@ -62,55 +62,56 @@
 		<table id="profile">
 			<tr>
 				<td><b>First Name</b></td>
-				<td><%=user.getFirstname()%></td>
+				<td class="spaceCenter"><%=user.getFirstname()%></td>
 			</tr>
 			<tr>
 				<td><b>Last Name</b></td>
-				<td><%=user.getLastname()%></td>
+				<td class="spaceCenter"><%=user.getLastname()%></td>
 			</tr>
 
 			<tr>
 				<td><b>Email</b></td>
-				<td><%=user.getEmail()%></td>
+				<td class="spaceCenter"><%=user.getEmail()%></td>
 			</tr>
 			<tr>
 				<td><b>Company</b></td>
-				<td><%=user.getCompany()%></td>
+				<td class="spaceCenter"><%=user.getCompany()%></td>
 			</tr>
 			<tr>
 				<td><b>Department</b></td>
-				<td><%=user.getDepartment()%></td>
+				<td class="spaceCenter"><%=user.getDepartment()%></td>
 			</tr>
 			<tr>
 				<td><b>Title</b></td>
-				<td><%=user.getTitle()%></td>
+				<td class="spaceCenter"><%=user.getTitle()%></td>
 			</tr>
 			<tr>
 				<td><b>Work Address</b></td>
-				<td><%=user.getWork_address()%></td>
+				<td class="spaceCenter"><%=user.getWork_address()%></td>
 			</tr>
 			<tr>
 				<td><b>Work City</b></td>
-				<td><%=user.getWork_city()%></td>
+				<td class="spaceCenter"><%=user.getWork_city()%></td>
 			</tr>
 			<tr>
 				<td><b>Work State</b></td>
-				<td><%=user.getWork_state()%></td>
+				<td class="spaceCenter"><%=user.getWork_state()%></td>
 			</tr>
 			<tr>
 				<td><b>Work Zip Code</b></td>
-				<td><%=user.getWork_zip()%></td>
+				<td class="spaceCenter"><%=user.getWork_zip()%></td>
 			</tr>
 			<tr>
 				<td><b>Phone</b></td>
-				<td><%=user.getPhone()%></td>
+				<td class="spaceCenter"><%=user.getPhone()%></td>
 			</tr>
 		</table>
 		<br />
 		<table>
 			<tr>
 				<td></td>
-				<td class="space"><form method="post" action="editProfile">
+				<td class="spaceCenter"><form method="post"
+						action="editProfile">
 						<input type="hidden" name="id" value="<%=user.getId()%>">
 						<input type="submit" value="Update" name="edit">
 					</form></td>

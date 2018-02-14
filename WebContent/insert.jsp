@@ -41,26 +41,26 @@
 			<table id="createAccount">
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="firstName" value=""
+					<td class="spaceLeft"><input type="text" id="firstName" value=""
 						name="firstName" size="30" pattern="[A-Za-z ]*"
 						title="Only letters allowed" required autofocus><font
 						color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lastName" value="" name="lastName"
+					<td class="spaceLeft"><input type="text" id="lastName" value="" name="lastName"
 						size="30" pattern="[A-Za-z ]*" title="Only letters allowed"
 						required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input type="email" id="email" name="email" value=""
+					<td class="spaceLeft"><input type="email" id="email" name="email" value=""
 						size="30" title="myemail@domain.com" required><font
 						color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" id="username" name="username" value=""
+					<td class="spaceLeft"><input type="text" id="username" name="username" value=""
 						size="30" pattern="[A-Za-z-0-9]*"
 						title="Only letters and numbers allowed" required><font
 						color='red'>*</font></td>
@@ -68,14 +68,14 @@
 				<tr>
 					<td>Password:</td>
 					<!-- At least 8 characters long! -->
-					<td><input type="password" id="password" name="password"
+					<td class="spaceLeft"><input type="password" id="password" name="password"
 						value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Confirm Password:</td>
-					<td><input type="password" id="password_confirm"
+					<td class="spaceLeft"><input type="password" id="password_confirm"
 						name="password_confirm" value="" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
@@ -83,51 +83,51 @@
 				</tr>
 				<tr>
 					<td>Company:</td>
-					<td><input type="text" id="company" name="company" value=""
+					<td class="spaceLeft"><input type="text" id="company" name="company" value=""
 						size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Department:</td>
-					<td><input type="text" id="department" name="department"
+					<td class="spaceLeft"><input type="text" id="department" name="department"
 						value="" size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Job Title:</td>
-					<td><input type="text" id="title" name="title" value=""
+					<td class="spaceLeft"><input type="text" id="title" name="title" value=""
 						size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Address:</td>
-					<td><input type="text" id="streetAddr" value=""
+					<td class="spaceLeft"><input type="text" id="streetAddr" value=""
 						name="streetAddr" size="50" pattern="[A-Za-z-0-9.# ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work City:</td>
-					<td><input type="text" id="city" value="" name="city"
+					<td class="spaceLeft"><input type="text" id="city" value="" name="city"
 						size="30" pattern="[A-Za-z ]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work State:</td>
-					<td><input type="text" id="state" value="" name="state"
+					<td class="spaceLeft"><input type="text" id="state" value="" name="state"
 						size="2" pattern="[A-Za-z]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Zip Code:</td>
-					<td><input type="text" id="zip" value="" name="zip" size="5"
+					<td class="spaceLeft"><input type="text" id="zip" value="" name="zip" size="5"
 						pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Phone:</td>
-					<td><input type="text" id="phone" value="" name="phone"
+					<td class="spaceLeft"><input type="text" id="phone" value="" name="phone"
 						size="15" pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="reset" value="Reset" name="Reset"> <input
+					<td class="spaceLeft"><input type="reset" value="Reset" name="Reset"> <input
 						type="submit" value="Create Account" name="CreateAccount"></td>
 				</tr>
 			</table>
@@ -135,11 +135,11 @@
 		</form>
 		<table>
 			<tr>
-				<td class="space"><font color='red'>*</font> Required fields</td>
+				<td class="spaceCenter"><font color='red'>*</font> Required fields</td>
 			</tr>
 			<tr>
 				<!--  return button -->
-				<td class="space"><a href="login.jsp"><button type="button">Return
+				<td class="spaceCenter"><a href="login.jsp"><button type="button">Return
 							to log in page</button></a></td>
 			</tr>
 		</table>

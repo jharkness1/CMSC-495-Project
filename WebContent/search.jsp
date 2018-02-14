@@ -38,14 +38,14 @@
 			<table id="search">
 				<tr>
 					<td>Search by:</td>
-					<td><select name="searchBy">
+					<td class="spaceLeft"><select name="searchBy">
 							<option value="lastName" selected>Last Name</option>
 							<option value="department">Department</option>
 					</select></td>
 				</tr>
 				<tr>
 					<td>Value</td>
-					<td><input type="text" id="searchValue" value=""
+					<td class="spaceLeft"><input type="text" id="searchValue" value=""
 						name="searchValue" size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>

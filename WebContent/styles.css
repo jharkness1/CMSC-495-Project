@@ -49,7 +49,6 @@ table#profile, table#results {
 	border-width: 10px;
 	padding: 10px;
 	margin: auto;
-	padding: 10px;
 }
 
 table#login, table#search, table#editProfile, table#createAccount {
@@ -60,9 +59,14 @@ table#login, table#search, table#editProfile, table#createAccount {
 	margin: auto;
 }
 
-.space {
-	padding: 10px;
+.spaceCenter {
+	padding: 7px;
 	text-align: center;
+}
+
+.spaceLeft {
+	padding: 5px;
+	text-align: left;
 }
 
 #login, #home, #updateProfile, #search, #results, #createAccount {

@@ -48,14 +48,14 @@
 				<form method="post" action="accessProfile">
 					<input type="hidden" name="id" value="<%=u.getId()%>">
 				</form>
-				<td class="space"><%=u.getId()%></td>
-				<td class="space"><%=u.getLastname()%></td>
-				<td class="space"><%=u.getFirstname()%></td>
-				<td class="space"><%=u.getEmail()%></td>
-				<td class="space"><%=u.getDepartment()%></td>
-				<td class="space"><input type="submit" value="Access Profile"
+				<td class="spaceCenter"><%=u.getId()%></td>
+				<td class="spaceCenter"><%=u.getLastname()%></td>
+				<td class="spaceCenter"><%=u.getFirstname()%></td>
+				<td class="spaceCenter"><%=u.getEmail()%></td>
+				<td class="spaceCenter"><%=u.getDepartment()%></td>
+				<td class="spaceCenter"><input type="submit" value="Access Profile"
 					name="accessProfile"></td>
-				<td class="space"><form method="post" action="delete">
+				<td class="spaceCenter"><form method="post" action="delete">
 						<input type="hidden" name="id" value="<%=u.getId()%>"> <input
 							type="submit" value="Delete" name="delete">
 					</form></td>

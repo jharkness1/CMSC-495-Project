@@ -23,13 +23,13 @@
 			<table id="login">
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" id="username" value="" name="username"
+					<td class="spaceLeft"><input type="text" id="username" value="" name="username"
 						size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" id="password" name="password"
+					<td class="spaceLeft"><input type="password" id="password" name="password"
 						value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						required autocomplete='off'></td>
