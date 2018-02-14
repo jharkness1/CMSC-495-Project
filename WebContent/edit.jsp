@@ -32,9 +32,11 @@
 		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
 			<!-- Remember old username and email and post it as hidden values to compare them with new ones later -->
+			<!-- Post also the id of user that is about to be updated -->
 			<input type="hidden" name="oldUsername"
 				value="<%=user.getUsername()%>"> <input type="hidden"
-				name="oldEmail" value="<%=user.getEmail()%>">
+				name="oldEmail" value="<%=user.getEmail()%>"> <input
+				type="hidden" name="idOfUpdatedUser" value="<%=user.getId()%>">
 			<table id="editProfile">
 				<tr>
 					<td>First Name:</td>

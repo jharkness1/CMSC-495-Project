@@ -19,10 +19,10 @@ import models.UserProfile;
 @WebServlet("/EditProfileServlet")
 public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	HttpSession session;
+	private HttpSession session;
 	// variable that will determine whether the user is authorized to edit profile
 	// deny by default
-	boolean allowEdit = false;
+	private boolean allowEdit = false;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,7 +50,7 @@ public class EditProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// get the posted values from the user's profile view
 		int id = Integer.valueOf((String) request.getParameter("id"));
-		// if the user is not admin he/she should not be allowed to update
+		// if the user is not admin he/she should not be allowed to edit
 		// any other profile that own profile
 		// Therefore, retrieve role and own id from session variables:
 		session = request.getSession(true);
