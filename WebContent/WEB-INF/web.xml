@@ -64,6 +64,22 @@
 		<url-pattern>/updateProfile</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>ConfirmDeleteServlet</servlet-name>
+		<servlet-class>servlets.ConfirmDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConfirmDeleteServlet</servlet-name>
+		<url-pattern>/confirmDelete</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<servlet-class>servlets.DeleteUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<url-pattern>/deleteUser</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>LogoutServlet</servlet-name>
 		<servlet-class>servlets.LogoutServlet</servlet-class>
 	</servlet>

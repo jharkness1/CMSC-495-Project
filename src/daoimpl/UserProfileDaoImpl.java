@@ -107,7 +107,8 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
 					numberOfRows = rs.getInt(1);
-//					System.out.println("Number of users by that username equals " + numberOfRows);
+					// System.out.println("Number of users by that username equals " +
+					// numberOfRows);
 				}
 				// if the query returned number of rows other than 0, user already exists
 				if (numberOfRows > 0) {
@@ -139,7 +140,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-//		System.out.println(usernameExists);
+		// System.out.println(usernameExists);
 		return usernameExists;
 	} // end usernameExists method
 
@@ -165,7 +166,8 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				// iterate over results, retrieve by column index
 				while (rs.next()) {
 					numberOfRows = rs.getInt(1);
-//					System.out.println("Number of users by that username equals " + numberOfRows);
+					// System.out.println("Number of users by that username equals " +
+					// numberOfRows);
 				}
 				// if the query returned number of rows other than 0, user already exists
 				if (numberOfRows > 0) {
@@ -197,7 +199,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 				}
 			}
 		} // end clean up
-//		System.out.println(emailExists);
+		// System.out.println(emailExists);
 		return emailExists;
 	} // end emailExists method
 
@@ -772,12 +774,12 @@ public class UserProfileDaoImpl implements UserProfileDao {
 	} // end getUserInfoForUpdate method
 
 	@Override
-	/** 
-	 * method to update user profile information in the database
-	 * returns string message whether there was no error during update
+	/**
+	 * method to update user profile information in the database returns string
+	 * message whether there was no error during update
 	 */
 	public String updateProfile(UserProfile user, String oldUsername) {
-		// set message to error by default, 
+		// set message to error by default,
 		// update it to success later
 		String message = "Profile could not be updated.";
 
@@ -839,8 +841,45 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 	@Override
 	public boolean deleteUser(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		boolean success = false;
+		Connection conn = null;
+		try {
+			// try to create connection to the database
+			conn = new DBConnector().getConnection();
+
+			// use prepared statements to avoid SQL Injection
+			String query = "DELETE FROM profiles WHERE id=?";
+
+			PreparedStatement prepSt = null;
+
+			try {
+				prepSt = conn.prepareStatement(query);
+				prepSt.setInt(1, id);
+
+				prepSt.executeUpdate();
+				success = true;
+			} catch (SQLException e) {
+				System.out.println(e);
+			} finally { // clean up
+
+				if (prepSt != null) {
+					prepSt.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // clean up
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					System.out.println(ex);
+				}
+			}
+		} // end clean up
+		return success;
+	} // end deleteUser method
 
 }

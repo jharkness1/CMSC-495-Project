@@ -55,7 +55,7 @@
 				<td class="spaceCenter"><%=u.getDepartment()%></td>
 				<td class="spaceCenter"><input type="submit" value="Access Profile"
 					name="accessProfile"></td>
-				<td class="spaceCenter"><form method="post" action="delete">
+				<td class="spaceCenter"><form method="post" action="confirmDelete">
 						<input type="hidden" name="id" value="<%=u.getId()%>"> <input
 							type="submit" value="Delete" name="delete">
 					</form></td>
