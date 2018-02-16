@@ -1,11 +1,16 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import daoimpl.UserProfileDaoImpl;
+import models.UserProfile;
 
 /**
  * Servlet implementation class AccessProfileServlet
@@ -34,8 +39,26 @@ public class AccessProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		 int id = Integer.parseInt(request.getParameter("id"));
+         
+
+         UserProfileDaoImpl profileImp = new UserProfileDaoImpl();
+
+        
+
+         UserProfile user = profileImp.accessProfile(id);
+
+        
+
+         request.setAttribute("profile", user);
+
+        
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+
+        
+
+         dispatcher.forward(request, response);
 	}
 
 }

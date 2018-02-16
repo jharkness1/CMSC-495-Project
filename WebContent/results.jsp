@@ -47,15 +47,17 @@
 			<tr>
 				<form method="post" action="accessProfile">
 					<input type="hidden" name="id" value="<%=u.getId()%>">
+
+					<td class="spaceCenter"><%=u.getId()%></td>
+					<td class="spaceCenter"><%=u.getLastname()%></td>
+					<td class="spaceCenter"><%=u.getFirstname()%></td>
+					<td class="spaceCenter"><%=u.getEmail()%></td>
+					<td class="spaceCenter"><%=u.getDepartment()%></td>
+					<td class="spaceCenter"><input type="submit"
+						value="Access Profile" name="accessProfile"></td>
 				</form>
-				<td class="spaceCenter"><%=u.getId()%></td>
-				<td class="spaceCenter"><%=u.getLastname()%></td>
-				<td class="spaceCenter"><%=u.getFirstname()%></td>
-				<td class="spaceCenter"><%=u.getEmail()%></td>
-				<td class="spaceCenter"><%=u.getDepartment()%></td>
-				<td class="spaceCenter"><input type="submit" value="Access Profile"
-					name="accessProfile"></td>
-				<td class="spaceCenter"><form method="post" action="confirmDelete">
+				<td class="spaceCenter"><form method="post"
+						action="confirmDelete">
 						<input type="hidden" name="id" value="<%=u.getId()%>"> <input
 							type="submit" value="Delete" name="delete">
 					</form></td>
