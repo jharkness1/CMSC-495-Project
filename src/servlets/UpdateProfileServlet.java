@@ -92,7 +92,7 @@ public class UpdateProfileServlet extends HttpServlet {
 				// authorize admin user to edit any profile
 			allowUpdate = true;
 		}
-		// now verify if user is authorized to edit profile
+		// now verify if user is authorized to update profile
 		if (allowUpdate) {
 			// check if all required fields have been filled out
 			if (firstName.length() > 0 || lastName.length() > 0 || email.length() > 0 || username.length() > 0
