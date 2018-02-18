@@ -43,12 +43,13 @@ public class AccessProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// retrieve id from submitted form
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		UserProfileDaoImpl profileImp = new UserProfileDaoImpl();
-
+		// retrieve user profile info
 		UserProfile user = profileImp.accessProfile(id);
-
+		// set user profile as request attribute
 		request.setAttribute("profile", user);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
