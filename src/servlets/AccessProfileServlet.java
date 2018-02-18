@@ -18,47 +18,42 @@ import models.UserProfile;
 @WebServlet("/AccessProfileServlet")
 public class AccessProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccessProfileServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public AccessProfileServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 int id = Integer.parseInt(request.getParameter("id"));
-         
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
 
-         UserProfileDaoImpl profileImp = new UserProfileDaoImpl();
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
 
-        
+		UserProfileDaoImpl profileImp = new UserProfileDaoImpl();
 
-         UserProfile user = profileImp.accessProfile(id);
+		UserProfile user = profileImp.accessProfile(id);
 
-        
-
-         request.setAttribute("profile", user);
-
-        
+		request.setAttribute("profile", user);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
 
-        
-
-         dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
 	}
 
 }

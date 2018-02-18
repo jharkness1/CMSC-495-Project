@@ -13,9 +13,23 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 <title>Login</title>
 </head>
+<%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.addHeader("Cache-Control","no-store");
+response.addHeader("Cache-Control", "private");
+response.addHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
 <body>
 	<%@include file="header.html"%>
-	<%-- Simulate Login Form --%>
+	<%
+		if (session.getAttribute("ownProfile") != null) { // if session is valid redirect to home.jsp
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		} else {
+	%>
+	<%-- Login Form --%>
 	<div id="login">
 		<h3>Login</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
@@ -23,14 +37,14 @@
 			<table id="login">
 				<tr>
 					<td>Username:</td>
-					<td class="spaceLeft"><input type="text" id="username" value="" name="username"
-						size="30" pattern="[A-Za-z-0-9 ]*"
+					<td class="spaceLeft"><input type="text" id="username"
+						value="" name="username" size="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td class="spaceLeft"><input type="password" id="password" name="password"
-						value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
+					<td class="spaceLeft"><input type="password" id="password"
+						name="password" value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						required autocomplete='off'></td>
 				</tr>
@@ -51,7 +65,7 @@
 	<div id="error">
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
-			if (e != null) {
+				if (e != null) {
 		%>
 		<br />
 		<%=e%><br />
@@ -70,5 +84,8 @@
 
 	</div>
 	<%@include file="footer.html"%>
+	<%
+		}
+	%>
 </body>
 </html>

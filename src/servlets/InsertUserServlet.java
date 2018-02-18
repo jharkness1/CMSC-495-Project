@@ -28,16 +28,15 @@ public class InsertUserServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	// /**
-	// * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	// * response)
-	// */
-	// protected void doGet(HttpServletRequest request, HttpServletResponse
-	// response)
-	// throws ServletException, IOException {
-	// // TODO Auto-generated method stub
-	// response.getWriter().append("Served at: ").append(request.getContextPath());
-	// }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -79,8 +78,8 @@ public class InsertUserServlet extends HttpServlet {
 				if (password.equals(password_confirm)) {
 
 					// create UserProfile object
-					UserProfile user = new UserProfile(firstName, lastName, email, company,
-							department, title, streetAddr, city, state, zip, phone, username, password);
+					UserProfile user = new UserProfile(firstName, lastName, email, company, department, title,
+							streetAddr, city, state, zip, phone, username, password);
 					UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 					// avoid creating duplicate accounts
 					// check if given username or email already exist in the database table

@@ -8,6 +8,14 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 <title>Edit Profile</title>
 </head>
+<%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.addHeader("Cache-Control","no-store");
+response.addHeader("Cache-Control", "private");
+response.addHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
 <body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>

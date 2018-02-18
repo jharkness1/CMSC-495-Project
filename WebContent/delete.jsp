@@ -8,23 +8,17 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 <title>Delete User</title>
 </head>
+<%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
+<%
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.addHeader("Cache-Control", "no-store");
+	response.addHeader("Cache-Control", "private");
+	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
-	<%-- <%
-		session = request.getSession(true);
-		user = (UserProfile) session.getAttribute("ownProfile");
-	%> --%>
-	<%-- <div id="error">
-		<!-- Print Error Message if any -->
-		<%
-			String e = (String) request.getAttribute("ErrorMessage");
-			if (e != null) {
-		%>
-		<br /><%=e%>
-		<%
-			} // end error
-		%> --%>
 	<%
 		// if session is valid and user's role is admin
 		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {

@@ -21,7 +21,6 @@ public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private HttpSession session;
-	private UserProfile user = null;
 	// variable that will determine whether the user is authorized to delete profile
 	// deny by default
 	private boolean allowDelete = false;
@@ -40,8 +39,8 @@ public class DeleteUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
