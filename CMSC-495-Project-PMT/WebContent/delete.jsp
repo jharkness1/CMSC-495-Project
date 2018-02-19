@@ -16,14 +16,20 @@
 	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
 	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 <body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%
 		// if session is valid and user's role is admin
 		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
-			// retrieve from request attribute profile of the user that is about to be deleted
-			user = (UserProfile) request.getAttribute("profileToDelete");
+			if (request.getAttribute("profileToDelete") != null) {
+				// retrieve from request attribute profile of the user that is about to be deleted
+				user = (UserProfile) request.getAttribute("profileToDelete");
 	%>
 	<!-- 	</div> -->
 	<!-- Show buttons -->
@@ -103,6 +109,10 @@
 							type="button">Cancel</button></a></td>
 			</tr>
 			<%
+				} else { // if no request value was posted
+						RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+						dispatcher.forward(request, response);
+					}
 				} else { // no session, redirect to login
 					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 					dispatcher.forward(request, response);

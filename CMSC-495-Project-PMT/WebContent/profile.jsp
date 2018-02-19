@@ -16,6 +16,13 @@
 	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
 	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
+<%-- Use javascript to implement PRG pattern --%>
+<%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 <body>
 	<%@include file="header.html"%>
 
@@ -33,6 +40,7 @@
 			dispatcher.forward(request, response);
 
 		} else { // active admin session
+			
 			// retrieve profile from the request attribute
 			user = (UserProfile) request.getAttribute("profile");
 			// show all buttons
