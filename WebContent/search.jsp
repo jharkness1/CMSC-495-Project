@@ -27,6 +27,11 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			<input type="submit" name="logout" value="Logout">
 		</form>
 		<a href="home.jsp"><button type="button">Home</button></a>
+		<form method="post" action="listAll">
+			<input type="submit" name="listAll" value="List All Users">
+		</form>
+		<a href="search.jsp"><button type="button">Search</button></a> <a
+			href="insert.jsp"><button type="button">Create Account</button></a>
 	</div>
 	<div id="error">
 		<!-- Print Error Message if any -->

@@ -16,6 +16,13 @@
 	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
 	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
+<%-- Use javascript to implement PRG pattern --%>
+<%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 <body>
 	<%@include file="header.html"%>
 
@@ -25,21 +32,19 @@
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
 
 	<%
-		if (session.getAttribute("ownProfile") == null) { // if session is not valid return to login
+		// if session is not valid return to login
+		if (session.getAttribute("ownProfile") != null && !session.getAttribute("role").equals("admin")) {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 
 			dispatcher.forward(request, response);
 
-		} else { // active session
-
+		} else { // active admin session
+			
 			// retrieve profile from the request attribute
-
 			user = (UserProfile) request.getAttribute("profile");
-
-			// show logout button for everyone
+			// show all buttons
 	%>
-
 	<div id="buttons" class="buttons">
 
 		<form method="post" action="logout">
@@ -48,18 +53,7 @@
 
 		</form>
 
-		<%
-			// check user's role
-
-				session = request.getSession(true);
-
-				String role = (String) session.getAttribute("role");
-
-				if (role.equals("admin")) {
-
-					// show administrative options:
-		%>
-
+		<a href="home.jsp"><button type="button">Home</button></a>
 		<form method="post" action="listAll">
 
 			<input type="submit" name="listAll" value="List All Users">
@@ -68,34 +62,12 @@
 
 		<a href="search.jsp"><button type="button">Search</button></a> <a
 			href="insert.jsp"><button type="button">Create Account</button></a>
-
-		<%
-			} // end if user is admin
-		%>
-
 	</div>
 
-	<div id="error">
-
-		<!-- Print Error Message if any -->
-
-		<%
-			String e = (String) request.getAttribute("ErrorMessage");
-
-				if (e != null) {
-		%>
-
-		<br /><%=e%>
-
-		<%
-			} // end error
-		%>
-
-	</div>
 
 	<div id="home">
 
-		<h3>View Profile</h3>
+		<h3>View Profile Information</h3>
 
 
 
@@ -208,8 +180,13 @@
 
 						<input type="submit" value="Update" name="edit">
 
-					</form></td>
 
+					</form></td>
+				<td class="spaceCenter"><form method="post"
+						action="confirmDelete">
+						<input type="hidden" name="id" value="<%=user.getId()%>">
+						<input type="submit" value="Delete" name="delete">
+					</form></td>
 			</tr>
 
 			<%

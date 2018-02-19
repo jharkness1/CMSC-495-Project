@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,7 +84,12 @@ public class ConfirmDeleteServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else {
 			request.setAttribute("ErrorMessage", "You are not authorized to delete this account!");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			// create data access object implementation and all profiles from database
+			UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
+			ArrayList<UserProfile> allResults = userProfileDaoImpl.listAllResults();
+			// set the request attribute to forward the results to jsp
+			request.setAttribute("results", allResults);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

@@ -89,7 +89,8 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 					loginInfo.setRole(role);
 				} // end if username was found in the database
 			} catch (SQLException e) {
-				System.out.println(e);
+				System.out.println("Error");
+//				System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -105,15 +106,18 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println("Error");
+//			System.out.println(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error");			
+//			e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
-					System.out.println(ex);
+					System.out.println("Error");
+//					System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -212,7 +216,8 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				prepSt.executeUpdate();
 				success = true;
 			} catch (SQLException e) {
-				System.out.println(e);
+				System.out.println("Error");
+//				System.out.println(e);
 			} finally { // clean up
 
 				if (prepSt != null) {
@@ -220,15 +225,18 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println("Error");
+//			System.out.println(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error");
+//			e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
-					System.out.println(ex);
+					System.out.println("Error");
+//					System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -269,7 +277,8 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				prepSt.executeUpdate();
 				success = true;
 			} catch (SQLException e) {
-				System.out.println(e);
+				System.out.println("Error");
+//				System.out.println(e);
 			} finally { // clean up
 
 				if (prepSt != null) {
@@ -277,15 +286,18 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println("Error");
+//			System.out.println(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error");
+//			e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
-					System.out.println(ex);
+					System.out.println("Error");
+//					System.out.println(ex);
 				}
 			}
 		} // end clean up
