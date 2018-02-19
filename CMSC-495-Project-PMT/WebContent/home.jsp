@@ -71,7 +71,8 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		%>
 	</div>
 	<div id="home">
-		<h3>View Profile</h3>
+	<h2>Welcome <%=session.getAttribute("username") %>!</h2>
+		<h4>Your Profile Information</h4>
 
 		<table id="profile">
 			<tr>

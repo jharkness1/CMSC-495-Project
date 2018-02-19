@@ -43,11 +43,12 @@
 	<div id="buttons" class="buttons">
 
 		<form method="post" action="logout">
-			<a href="home.jsp"><button type="button">Home</button></a>
 
 			<input type="submit" name="logout" value="Logout">
 
 		</form>
+		
+		<a href="home.jsp"><button type="button">Home</button></a>
 
 		<%
 			// check user's role
@@ -66,7 +67,7 @@
 			<input type="submit" name="listAll" value="List All Users">
 
 		</form>
-		
+
 		<a href="search.jsp"><button type="button">Search</button></a> <a
 			href="insert.jsp"><button type="button">Create Account</button></a>
 
@@ -96,7 +97,7 @@
 
 	<div id="home">
 
-		<h3>View Profile</h3>
+		<h3>View Profile Information</h3>
 
 
 
@@ -208,12 +209,13 @@
 						<input type="hidden" name="id" value="<%=user.getId()%>">
 
 						<input type="submit" value="Update" name="edit">
-						
+
 
 					</form></td>
-					<td class="spaceCenter"><form method="post" action="confirmDelete">
-						<input type="hidden" name="id" value="<%=user.getId()%>"> <input
-							type="submit" value="Delete" name="delete">
+				<td class="spaceCenter"><form method="post"
+						action="confirmDelete">
+						<input type="hidden" name="id" value="<%=user.getId()%>">
+						<input type="submit" value="Delete" name="delete">
 					</form></td>
 			</tr>
 

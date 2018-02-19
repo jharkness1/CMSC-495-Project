@@ -93,6 +93,8 @@ public class AuthenticateServlet extends HttpServlet {
 							// I will set this UserProfile object as a session attribute, therefore we
 							// will be able to access it throughout the session, until we logout
 							session.setAttribute("ownProfile", ownProfile);
+							// save username as a session attribute
+							session.setAttribute("username", username);
 							// Send to the Home JSP page
 							RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 							dispatcher.forward(request, response);
