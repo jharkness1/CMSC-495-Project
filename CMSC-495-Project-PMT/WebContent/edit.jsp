@@ -10,11 +10,11 @@
 </head>
 <%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
 <%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.addHeader("Cache-Control","no-store");
-response.addHeader("Cache-Control", "private");
-response.addHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.addHeader("Cache-Control", "no-store");
+	response.addHeader("Cache-Control", "private");
+	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
 <body>
 	<%@include file="header.html"%>
@@ -25,17 +25,36 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		} else { // active session
-			if (request.getAttribute("userInfo") != null) {
-				// retrieve the request attribute with user info
-				user = (UserProfile) request.getAttribute("userInfo");
-				// show logout button and Home button
+			// show logout button for everyone
 	%>
 	<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
 		</form>
 		<a href="home.jsp"><button type="button">Home</button></a>
+		<%
+			// check user's role
+				session = request.getSession(true);
+				String role = (String) session.getAttribute("role");
+
+				if (role.equals("admin")) {
+					// show administrative options:
+		%>
+		<form method="post" action="listAll">
+			<input type="submit" name="listAll" value="List All Users">
+		</form>
+		<a href="search.jsp"><button type="button">Search</button></a> <a
+			href="insert.jsp"><button type="button">Create Account</button></a>
+		<%
+			} // end if user is admin
+		%>
 	</div>
+	<%
+		if (request.getAttribute("userInfo") != null) {
+				// retrieve the request attribute with user info
+				user = (UserProfile) request.getAttribute("userInfo");
+				// show logout button and Home button
+	%>
 	<div id="updateProfile">
 		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
@@ -62,51 +81,52 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td class="spaceLeft"><input type="email" id="email" name="email"
-						value="<%=user.getEmail()%>" size="30" title="myemail@domain.com"
-						required><font color='red'>*</font></td>
+					<td class="spaceLeft"><input type="email" id="email"
+						name="email" value="<%=user.getEmail()%>" size="30"
+						title="myemail@domain.com" required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td class="spaceLeft"><input type="text" id="username" name="username"
-						value="<%=user.getUsername()%>" size="30" pattern="[A-Za-z-0-9]*"
-						title="Only letters and numbers allowed" required><font
-						color='red'>*</font></td>
+					<td class="spaceLeft"><input type="text" id="username"
+						name="username" value="<%=user.getUsername()%>" size="30"
+						pattern="[A-Za-z-0-9]*" title="Only letters and numbers allowed"
+						required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<!-- At least 8 characters long! -->
-					<td class="spaceLeft"><input type="password" id="password" name="password"
-						value="<%=user.getPassword()%>" size="30"
+					<td class="spaceLeft"><input type="password" id="password"
+						name="password" value="<%=user.getPassword()%>" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Confirm Password:</td>
-					<td class="spaceLeft"><input type="password" id="password_confirm"
-						name="password_confirm" value="<%=user.getPassword()%>" size="30"
+					<td class="spaceLeft"><input type="password"
+						id="password_confirm" name="password_confirm"
+						value="<%=user.getPassword()%>" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Company:</td>
-					<td class="spaceLeft"><input type="text" id="company" name="company"
-						value="<%=user.getCompany()%>" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed"></td>
+					<td class="spaceLeft"><input type="text" id="company"
+						name="company" value="<%=user.getCompany()%>" size="30"
+						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Department:</td>
-					<td class="spaceLeft"><input type="text" id="department" name="department"
-						value="<%=user.getDepartment()%>" size="30"
+					<td class="spaceLeft"><input type="text" id="department"
+						name="department" value="<%=user.getDepartment()%>" size="30"
 						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Job Title:</td>
-					<td class="spaceLeft"><input type="text" id="title" name="title"
-						value="<%=user.getTitle()%>" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed"></td>
+					<td class="spaceLeft"><input type="text" id="title"
+						name="title" value="<%=user.getTitle()%>" size="30"
+						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Address:</td>
@@ -135,20 +155,22 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				</tr>
 				<tr>
 					<td>Phone:</td>
-					<td class="spaceLeft"><input type="text" id="phone" value="<%=user.getPhone()%>"
-						name="phone" size="15" pattern="[0-9]*"
-						title="Only numbers allowed"></td>
+					<td class="spaceLeft"><input type="text" id="phone"
+						value="<%=user.getPhone()%>" name="phone" size="15"
+						pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 
 			</table>
 			<br>
 			<table>
 				<tr>
-					<td class="spaceCenter"><font color='red'>*</font> Required fields</td>
+					<td class="spaceCenter"><font color='red'>*</font> Required
+						fields</td>
 				</tr>
 				<tr>
-					<td class="spaceCenter"><a href="home.jsp"><button type="button">Cancel</button></a><input
-						type="submit" value="Update" name="updateProfile"></td>
+					<td class="spaceCenter"><a href="home.jsp"><button
+								type="button">Cancel</button></a><input type="submit" value="Update"
+						name="updateProfile"></td>
 				</tr>
 			</table>
 			<br /> <br />

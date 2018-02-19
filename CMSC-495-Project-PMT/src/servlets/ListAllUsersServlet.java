@@ -35,7 +35,6 @@ public class ListAllUsersServlet extends HttpServlet {
 		// create data access object implementation
 		UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 		allResults = userProfileDaoImpl.listAllResults();
-
 		// set the request attribute to forward the results to jsp
 		request.setAttribute("results", allResults);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");

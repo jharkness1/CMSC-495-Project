@@ -11,11 +11,11 @@
 </head>
 <%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
 <%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.addHeader("Cache-Control","no-store");
-response.addHeader("Cache-Control", "private");
-response.addHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.addHeader("Cache-Control", "no-store");
+	response.addHeader("Cache-Control", "private");
+	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
 <body>
 	<%@include file="header.html"%>
@@ -30,15 +30,39 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				// display buttons:
 	%>
 	<div id="buttons" class="buttons">
+
 		<form method="post" action="logout">
+
 			<input type="submit" name="logout" value="Logout">
+
 		</form>
+
 		<a href="home.jsp"><button type="button">Home</button></a>
+		<form method="post" action="listAll">
+
+			<input type="submit" name="listAll" value="List All Users">
+
+		</form>
+
+		<a href="search.jsp"><button type="button">Search</button></a> <a
+			href="insert.jsp"><button type="button">Create Account</button></a>
 	</div>
 	<%
 		// if any results were found, display them
 				if (results.size() > 0) {
 	%>
+	<div id="error">
+		<!-- Print Error Message if any -->
+		<%
+			String e = (String) request.getAttribute("ErrorMessage");
+						if (e != null) {
+		%>
+		<br /><%=e%>
+		<%
+			} // end error
+		%>
+	</div>
+
 	<div id="results">
 		<h3>Results</h3>
 		<table id="results">
