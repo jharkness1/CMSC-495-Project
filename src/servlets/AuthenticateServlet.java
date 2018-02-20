@@ -56,8 +56,8 @@ public class AuthenticateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// get the posted values from the login form
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = request.getParameter("usernameLogin");
+		String password = request.getParameter("passwordLogin");
 		// check if all required fields have been filled out
 		if (username.length() > 0 || password.length() > 0) {
 			// if all required fields have been filled out, validate all fields
