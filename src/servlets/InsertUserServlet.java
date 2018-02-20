@@ -49,8 +49,8 @@ public class InsertUserServlet extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String password_confirm = request.getParameter("password_confirm");
+		String password = request.getParameter("inputpassword");
+		String password_confirm = request.getParameter("inputpassword_confirm");
 		String company = request.getParameter("company");
 		String department = request.getParameter("department");
 		String title = request.getParameter("title");

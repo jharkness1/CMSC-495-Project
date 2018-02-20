@@ -77,24 +77,33 @@
 					<td>Username:</td>
 					<td class="spaceLeft"><input type="text" id="username"
 						name="username" value="" size="30" pattern="[A-Za-z-0-9]*"
-						title="Only letters and numbers allowed" required><font
-						color='red'>*</font></td>
+						title="Only letters and numbers allowed"
+						autocomplete='new-password' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<!-- At least 8 characters long! -->
-					<td class="spaceLeft"><input type="password" id="password"
-						name="password" value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
+					<td class="spaceLeft">
+						<!-- This prevents auto-fill of username and password field in firefox -->
+						<input type="text" style="display: none;"> <input
+						oninput="this.setAttribute('type','password');" id="inputpassword"
+						name="inputpassword" type="text" size="30"
+						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off' required><font color='red'>*</font></td>
+						autocomplete='off' required> <font color='red'>*</font>
+					</td>
 				</tr>
 				<tr>
 					<td>Confirm Password:</td>
-					<td class="spaceLeft"><input type="password"
-						id="password_confirm" name="password_confirm" value="" size="30"
+					<td class="spaceLeft"><input oninput="this.setAttribute('type','password');"
+						id="inputpassword_confirm" name="inputpassword_confirm" type="text" size="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off' required><font color='red'>*</font></td>
+						autocomplete='off' required> <!-- <input type="password"
+						id="inputpassword_confirm" name="inputpassword_confirm" value=""
+						size="30" pattern="[A-Za-z0-9._!@$].{7,}"
+						title="At least 8 characters. Allowed special characters are: ._!@$"
+						autocomplete='new-password' required> --> <font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Company:</td>
