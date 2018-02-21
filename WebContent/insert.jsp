@@ -102,11 +102,7 @@
 						type="text" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off' required> <!-- <input type="password"
-						id="inputpassword_confirm" name="inputpassword_confirm" value=""
-						size="30" pattern="[A-Za-z0-9._!@$].{7,}"
-						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='new-password' required> --> <font color='red'>*</font></td>
+						autocomplete='off' required> <font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Company:</td>

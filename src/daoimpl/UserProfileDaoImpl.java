@@ -60,7 +60,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -71,17 +71,17 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -123,7 +123,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -134,21 +134,21 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
-		// System.out.println(usernameExists);
+			// System.out.println(usernameExists);
 		return usernameExists;
 	} // end usernameExists method
 
@@ -186,7 +186,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -197,21 +197,21 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
-		// System.out.println(emailExists);
+			// System.out.println(emailExists);
 		return emailExists;
 	} // end emailExists method
 
@@ -256,7 +256,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 
 				if (prepSt != null) {
@@ -265,7 +265,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally { // clean up
@@ -274,7 +274,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -298,6 +298,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 		String lastnameResult;
 		String firstname;
 		String email;
+		String username;
 		String department;
 		Connection conn = null;
 		try {
@@ -305,7 +306,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			conn = new DBConnector().getConnection();
 
 			// use prepared statements to avoid SQL Injection
-			String query = "SELECT id, lastname, firstname, email, department FROM profiles WHERE lastname=?";
+			String query = "SELECT id, lastname, firstname, email, username, department FROM profiles WHERE lastname=? ORDER BY lastname";
 
 			PreparedStatement prepSt = null;
 			ResultSet rs = null;
@@ -321,8 +322,9 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					lastnameResult = rs.getString(2);
 					firstname = rs.getString(3);
 					email = rs.getString(4);
+					username = rs.getString(5);
 					// this field can be null!
-					department = rs.getString(5);
+					department = rs.getString(6);
 					if (department == null) {
 						// replace null with empty string
 						department = "";
@@ -334,6 +336,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					resultUser.setLastname(lastnameResult);
 					resultUser.setFirstname(firstname);
 					resultUser.setEmail(email);
+					resultUser.setUsername(username);
 					resultUser.setDepartment(department);
 					// add resultUser to the list of search results
 					searchResults.add(resultUser);
@@ -341,7 +344,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -352,20 +355,20 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println("SQL exception");
-//			System.out.println(e);
+			// System.out.println("SQL exception");
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			System.out.println("Other exception");
-//			e.printStackTrace();
+			// System.out.println("Other exception");
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println("close conn exception");
-//					System.out.println(ex);
+					// System.out.println("close conn exception");
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -394,6 +397,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 		String lastname;
 		String firstname;
 		String email;
+		String username;
 		String departmentResult;
 		Connection conn = null;
 		try {
@@ -401,7 +405,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			conn = new DBConnector().getConnection();
 
 			// use prepared statements to avoid SQL Injection
-			String query = "SELECT id, lastname, firstname, email, department FROM profiles WHERE department=?";
+			String query = "SELECT id, lastname, firstname, email, username, department FROM profiles WHERE department=? ORDER BY lastname";
 
 			PreparedStatement prepSt = null;
 			ResultSet rs = null;
@@ -417,7 +421,8 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					lastname = rs.getString(2);
 					firstname = rs.getString(3);
 					email = rs.getString(4);
-					departmentResult = rs.getString(5);
+					username = rs.getString(5);
+					departmentResult = rs.getString(6);
 					// create new UserProfile object
 					UserProfile resultUser = new UserProfile();
 					// set appropriate fields to values from database
@@ -425,6 +430,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					resultUser.setLastname(lastname);
 					resultUser.setFirstname(firstname);
 					resultUser.setEmail(email);
+					resultUser.setUsername(username);
 					resultUser.setDepartment(departmentResult);
 					// add resultUser to the list of search results
 					searchResults.add(resultUser);
@@ -432,7 +438,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -443,20 +449,20 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println("SQL exception");
-//			System.out.println(e);
+			// System.out.println("SQL exception");
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			System.out.println("Other exception");
-//			e.printStackTrace();
+			// System.out.println("Other exception");
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println("close conn exception");
-//					System.out.println(ex);
+					// System.out.println("close conn exception");
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -476,6 +482,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 		String lastname;
 		String firstname;
 		String email;
+		String username;
 		String department;
 		Connection conn = null;
 		try {
@@ -483,7 +490,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			conn = new DBConnector().getConnection();
 
 			// use prepared statements to avoid SQL Injection
-			String query = "SELECT id, lastname, firstname, email, department FROM profiles";
+			String query = "SELECT id, lastname, firstname, email, username, department FROM profiles ORDER BY lastname";
 
 			PreparedStatement prepSt = null;
 			ResultSet rs = null;
@@ -498,8 +505,9 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					lastname = rs.getString(2);
 					firstname = rs.getString(3);
 					email = rs.getString(4);
+					username = rs.getString(5);
 					// this field can be null!
-					department = rs.getString(5);
+					department = rs.getString(6);
 					if (department == null) {
 						// replace null with empty string
 						department = "";
@@ -511,6 +519,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 					resultUser.setLastname(lastname);
 					resultUser.setFirstname(firstname);
 					resultUser.setEmail(email);
+					resultUser.setUsername(username);
 					resultUser.setDepartment(department);
 					// add resultUser to the list of search results
 					allResults.add(resultUser);
@@ -518,7 +527,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -529,20 +538,20 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println("SQL exception");
-//			System.out.println(e);
+			// System.out.println("SQL exception");
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			System.out.println("Other exception");
-//			e.printStackTrace();
+			// System.out.println("Other exception");
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println("close conn exception");
-//					System.out.println(ex);
+					// System.out.println("close conn exception");
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -643,7 +652,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -654,20 +663,20 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println("SQL exception");
-//			System.out.println(e);
+			// System.out.println("SQL exception");
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			System.out.println("Other exception");
-//			e.printStackTrace();
+			// System.out.println("Other exception");
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println("close conn exception");
-//					System.out.println(ex);
+					// System.out.println("close conn exception");
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -777,7 +786,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 				if (rs != null) {
 					rs.close();
@@ -788,20 +797,20 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println("SQL exception");
-//			System.out.println(e);
+			// System.out.println("SQL exception");
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			System.out.println("Other exception");
-//			e.printStackTrace();
+			// System.out.println("Other exception");
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println("close conn exception");
-//					System.out.println(ex);
+					// System.out.println("close conn exception");
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -852,7 +861,7 @@ public class UserProfileDaoImpl implements UserProfileDao {
 
 			} catch (SQLException e) {
 				System.out.println("Error");
-//				System.out.println(e);
+				// System.out.println(e);
 			} finally { // clean up
 
 				if (prepSt != null) {
@@ -861,17 +870,17 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up
@@ -907,17 +916,17 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error");
-//			System.out.println(e);
+			// System.out.println(e);
 		} catch (Exception e) {
 			System.out.println("Error");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} finally { // clean up
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException ex) {
 					System.out.println("Error");
-//					System.out.println(ex);
+					// System.out.println(ex);
 				}
 			}
 		} // end clean up

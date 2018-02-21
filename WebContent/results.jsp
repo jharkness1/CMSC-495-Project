@@ -20,9 +20,9 @@
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
 <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
 </script>
 <body>
 	<%@include file="header.html"%>
@@ -74,11 +74,11 @@
 		<h3>Results</h3>
 		<table id="results">
 			<tr>
-				<th>ID</th>
 				<th>Last Name</th>
 				<th>First Name</th>
 				<th>Email</th>
 				<th>Department</th>
+				<th>Username</th>
 			</tr>
 			<%
 				for (UserProfile u : results) {
@@ -87,11 +87,11 @@
 				<form method="post" action="accessProfile">
 					<input type="hidden" name="id" value="<%=u.getId()%>">
 
-					<td class="spaceCenter"><%=u.getId()%></td>
 					<td class="spaceCenter"><%=u.getLastname()%></td>
 					<td class="spaceCenter"><%=u.getFirstname()%></td>
 					<td class="spaceCenter"><%=u.getEmail()%></td>
 					<td class="spaceCenter"><%=u.getDepartment()%></td>
+					<td class="spaceCenter"><%=u.getUsername()%></td>
 					<td class="spaceCenter"><input type="submit"
 						value="Access Profile" name="accessProfile"></td>
 				</form>
