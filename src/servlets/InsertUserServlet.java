@@ -112,7 +112,7 @@ public class InsertUserServlet extends HttpServlet {
 			else {
 				// if user input was not valid
 				// display an error message above the form
-				request.setAttribute("ErrorMessage", "Wrong input. Check if all form fields are correct.");
+				request.setAttribute("ErrorMessage", "Wrong input.");
 
 			}
 		} else {

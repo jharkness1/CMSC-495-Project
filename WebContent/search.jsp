@@ -59,7 +59,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				<tr>
 					<td>Value</td>
 					<td class="spaceLeft"><input type="text" id="searchValue" value=""
-						name="searchValue" size="30" maxlength="30" pattern="[A-Za-z-0-9 ]*"
+						name="searchValue" size="30" maxlength="30" pattern="[A-Za-z-0-9' ]*"
 						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>

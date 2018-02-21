@@ -65,7 +65,7 @@
 					<td>Last Name:</td>
 					<td class="spaceLeft"><input type="text" id="lastName"
 						value="" name="lastName" size="30" maxlength="30"
-						pattern="[A-Za-z ]*" title="Only letters allowed" required><font
+						pattern="[A-Za-z' ]*" title="Only letters allowed" required><font
 						color='red'>*</font></td>
 				</tr>
 				<tr>

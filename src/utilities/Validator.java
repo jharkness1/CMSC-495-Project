@@ -64,7 +64,7 @@ public class Validator {
 		} // end if length is too long
 		else {
 			// create a white list of accepted characters:
-			Pattern pattern = Pattern.compile("[^A-Za-z ]");
+			Pattern pattern = Pattern.compile("[^A-Za-z' ]");
 			Matcher matcher = pattern.matcher(normalizedUserInput);
 			if (!matcher.find()) {
 				valid = true;
