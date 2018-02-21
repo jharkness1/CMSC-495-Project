@@ -19,9 +19,9 @@
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
 <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
 </script>
 <body>
 	<%@include file="header.html"%>
@@ -76,35 +76,36 @@
 					<td>First Name:</td>
 					<td class="spaceLeft"><input type="text" id="firstName"
 						value="<%=user.getFirstname()%>" name="firstName" size="30"
-						pattern="[A-Za-z ]*" title="Only letters allowed" required
-						autofocus><font color='red'>*</font></td>
+						maxlength="30" pattern="[A-Za-z ]*" title="Only letters allowed"
+						required autofocus><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
 					<td class="spaceLeft"><input type="text" id="lastName"
 						value="<%=user.getLastname()%>" name="lastName" size="30"
-						pattern="[A-Za-z ]*" title="Only letters allowed" required><font
-						color='red'>*</font></td>
+						maxlength="30" pattern="[A-Za-z ]*" title="Only letters allowed"
+						required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
 					<td class="spaceLeft"><input type="email" id="email"
-						name="email" value="<%=user.getEmail()%>" size="30"
+						name="email" value="<%=user.getEmail()%>" size="30" maxlength="30"
 						title="myemail@domain.com" required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
 					<td class="spaceLeft"><input type="text" id="username"
 						name="username" value="<%=user.getUsername()%>" size="30"
-						pattern="[A-Za-z-0-9]*" title="Only letters and numbers allowed"
-						required><font color='red'>*</font></td>
+						maxlength="30" pattern="[A-Za-z-0-9]*"
+						title="Only letters and numbers allowed" required><font
+						color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<!-- At least 8 characters long! -->
 					<td class="spaceLeft"><input type="password" id="password"
 						name="password" value="<%=user.getPassword()%>" size="30"
-						pattern="[A-Za-z0-9._!@$].{7,}"
+						maxlength="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required><font color='red'>*</font></td>
 				</tr>
@@ -112,7 +113,7 @@
 					<td>Confirm Password:</td>
 					<td class="spaceLeft"><input type="password"
 						id="password_confirm" name="password_confirm"
-						value="<%=user.getPassword()%>" size="30"
+						value="<%=user.getPassword()%>" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required><font color='red'>*</font></td>
@@ -121,49 +122,51 @@
 					<td>Company:</td>
 					<td class="spaceLeft"><input type="text" id="company"
 						name="company" value="<%=user.getCompany()%>" size="30"
-						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
+						maxlength="30" pattern="[A-Za-z-0-9 ]*"
+						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Department:</td>
 					<td class="spaceLeft"><input type="text" id="department"
 						name="department" value="<%=user.getDepartment()%>" size="30"
-						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
+						maxlength="30" pattern="[A-Za-z-0-9 ]*"
+						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Job Title:</td>
 					<td class="spaceLeft"><input type="text" id="title"
-						name="title" value="<%=user.getTitle()%>" size="30"
+						name="title" value="<%=user.getTitle()%>" size="30" maxlength="30"
 						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Address:</td>
 					<td class="spaceLeft"><input type="text" id="streetAddr"
 						value="<%=user.getWork_address()%>" name="streetAddr" size="50"
-						pattern="[A-Za-z-0-9.# ]*"
+						maxlength="50" pattern="[A-Za-z-0-9.# ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work City:</td>
 					<td class="spaceLeft"><input type="text" id="city"
 						value="<%=user.getWork_city()%>" name="city" size="30"
-						pattern="[A-Za-z ]*" title="Only letters allowed"></td>
+						maxlength="30" pattern="[A-Za-z ]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work State:</td>
 					<td class="spaceLeft"><input type="text" id="state"
 						value="<%=user.getWork_state()%>" name="state" size="2"
-						pattern="[A-Za-z]*" title="Only letters allowed"></td>
+						maxlength="2" pattern="[A-Za-z]*" title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Zip Code:</td>
 					<td class="spaceLeft"><input type="text" id="zip"
-						value="<%=user.getWork_zip()%>" name="zip" size="5"
+						value="<%=user.getWork_zip()%>" name="zip" size="5" maxlength="5"
 						pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Phone:</td>
 					<td class="spaceLeft"><input type="text" id="phone"
-						value="<%=user.getPhone()%>" name="phone" size="15"
+						value="<%=user.getPhone()%>" name="phone" size="15" maxlength="15"
 						pattern="[0-9]*" title="Only numbers allowed"></td>
 				</tr>
 

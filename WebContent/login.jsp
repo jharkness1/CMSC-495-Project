@@ -38,13 +38,13 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				<tr>
 					<td>Username:</td>
 					<td class="spaceLeft"><input type="text" id="usernameLogin"
-						value="" name="usernameLogin" size="30" pattern="[A-Za-z-0-9 ]*"
+						value="" name="usernameLogin" size="30" maxlength="30" pattern="[A-Za-z-0-9 ]*"
 						title="Only letters and numbers allowed" required autofocus></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td class="spaceLeft"><input type="password" id="passwordLogin"
-						name="passwordLogin" value="" size="30" pattern="[A-Za-z0-9._!@$].{7,}"
+						name="passwordLogin" value="" size="30" maxlength="30" pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						required autocomplete='off'></td>
 				</tr>

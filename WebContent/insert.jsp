@@ -57,27 +57,28 @@
 				<tr>
 					<td>First Name:</td>
 					<td class="spaceLeft"><input type="text" id="firstName"
-						value="" name="firstName" size="30" pattern="[A-Za-z ]*"
-						title="Only letters allowed" required autofocus><font
-						color='red'>*</font></td>
+						value="" name="firstName" size="30" maxlength="30"
+						pattern="[A-Za-z ]*" title="Only letters allowed" required
+						autofocus><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
 					<td class="spaceLeft"><input type="text" id="lastName"
-						value="" name="lastName" size="30" pattern="[A-Za-z ]*"
-						title="Only letters allowed" required><font color='red'>*</font></td>
+						value="" name="lastName" size="30" maxlength="30"
+						pattern="[A-Za-z ]*" title="Only letters allowed" required><font
+						color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
 					<td class="spaceLeft"><input type="email" id="email"
-						name="email" value="" size="30" title="myemail@domain.com"
-						required><font color='red'>*</font></td>
+						name="email" value="" size="30" maxlength="30"
+						title="myemail@domain.com" required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
 					<td class="spaceLeft"><input type="text" id="username"
-						name="username" value="" size="30" pattern="[A-Za-z-0-9]*"
-						title="Only letters and numbers allowed"
+						name="username" value="" size="30" maxlength="30"
+						pattern="[A-Za-z-0-9]*" title="Only letters and numbers allowed"
 						autocomplete='new-password' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
@@ -87,7 +88,7 @@
 						<!-- This prevents auto-fill of username and password field in firefox -->
 						<input type="text" style="display: none;"> <input
 						oninput="this.setAttribute('type','password');" id="inputpassword"
-						name="inputpassword" type="text" size="30"
+						name="inputpassword" type="text" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required> <font color='red'>*</font>
@@ -95,8 +96,10 @@
 				</tr>
 				<tr>
 					<td>Confirm Password:</td>
-					<td class="spaceLeft"><input oninput="this.setAttribute('type','password');"
-						id="inputpassword_confirm" name="inputpassword_confirm" type="text" size="30"
+					<td class="spaceLeft"><input
+						oninput="this.setAttribute('type','password');"
+						id="inputpassword_confirm" name="inputpassword_confirm"
+						type="text" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
 						autocomplete='off' required> <!-- <input type="password"
@@ -108,48 +111,50 @@
 				<tr>
 					<td>Company:</td>
 					<td class="spaceLeft"><input type="text" id="company"
-						name="company" value="" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed"></td>
+						name="company" value="" size="30" maxlength="30"
+						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Department:</td>
 					<td class="spaceLeft"><input type="text" id="department"
-						name="department" value="" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed"></td>
+						name="department" value="" size="30" maxlength="30"
+						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Job Title:</td>
 					<td class="spaceLeft"><input type="text" id="title"
-						name="title" value="" size="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed"></td>
+						name="title" value="" size="30" maxlength="30"
+						pattern="[A-Za-z-0-9 ]*" title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Address:</td>
 					<td class="spaceLeft"><input type="text" id="streetAddr"
-						value="" name="streetAddr" size="50" pattern="[A-Za-z-0-9.# ]*"
+						value="" name="streetAddr" size="50" maxlength="50"
+						pattern="[A-Za-z-0-9.# ]*"
 						title="Only letters and numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Work City:</td>
 					<td class="spaceLeft"><input type="text" id="city" value=""
-						name="city" size="30" pattern="[A-Za-z ]*"
+						name="city" size="30" maxlength="30" pattern="[A-Za-z ]*"
 						title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work State:</td>
 					<td class="spaceLeft"><input type="text" id="state" value=""
-						name="state" size="2" pattern="[A-Za-z]*"
+						name="state" size="2" maxlength="2" pattern="[A-Za-z]*"
 						title="Only letters allowed"></td>
 				</tr>
 				<tr>
 					<td>Work Zip Code:</td>
 					<td class="spaceLeft"><input type="text" id="zip" value=""
-						name="zip" size="5" pattern="[0-9]*" title="Only numbers allowed"></td>
+						name="zip" size="5" maxlength="5" pattern="[0-9]*"
+						title="Only numbers allowed"></td>
 				</tr>
 				<tr>
 					<td>Phone:</td>
 					<td class="spaceLeft"><input type="text" id="phone" value=""
-						name="phone" size="15" pattern="[0-9]*"
+						name="phone" size="15" maxlength="15" pattern="[0-9]*"
 						title="Only numbers allowed"></td>
 				</tr>
 				<tr>
