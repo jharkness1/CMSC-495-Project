@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="styles.css" rel="stylesheet" type="text/css">
-<title>Edit Profile</title>
-</head>
+<script type="text/javascript" src="telephone.js"></script>
 <%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
 <%
 	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
@@ -18,11 +17,14 @@
 %>
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
-<script>
+<script LANGUAGE="JavaScript">
 	if (window.history.replaceState) {
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
+<title>Edit Profile</title>
+</head>
+
 <body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
@@ -166,8 +168,10 @@
 				<tr>
 					<td>Phone:</td>
 					<td class="spaceLeft"><input type="text" id="phone"
-						value="<%=user.getPhone()%>" name="phone" size="15" maxlength="15"
-						pattern="[0-9]*" title="Only numbers allowed"></td>
+						value="<%=user.getPhone()%>" name="phone" size="20" maxlength="12"
+						pattern="[0-9-].{0,12}"
+						title="Only 10 numbers allowed: 1011010000"
+						onblur="addDashes(this);"></td>
 				</tr>
 
 			</table>

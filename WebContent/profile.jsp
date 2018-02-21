@@ -18,7 +18,7 @@
 %>
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
-<script>
+<script LANGUAGE="JavaScript">
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }

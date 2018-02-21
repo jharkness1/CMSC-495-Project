@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="styles.css" rel="stylesheet" type="text/css">
-<title>Create User Account</title>
-</head>
+<script type="text/javascript" src="telephone.js"></script>
 <%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
 <%
 	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
@@ -17,12 +16,15 @@
 %>
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
-<script>
+<script LANGUAGE="JavaScript">
 	if (window.history.replaceState) {
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
+<title>Create User Account</title>
+</head>
 <body>
+	<p id="demo"></p>
 	<%@include file="header.html"%>
 	<%-- If the session is active allow to logout or return to Home page --%>
 	<%
@@ -91,7 +93,7 @@
 						name="inputpassword" type="text" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off' required> <font color='red'>*</font>
+						autocomplete='off' required><font color='red'>*</font>
 					</td>
 				</tr>
 				<tr>
@@ -102,7 +104,7 @@
 						type="text" size="30" maxlength="30"
 						pattern="[A-Za-z0-9._!@$].{7,}"
 						title="At least 8 characters. Allowed special characters are: ._!@$"
-						autocomplete='off' required> <font color='red'>*</font></td>
+						autocomplete='off' required><font color='red'>*</font></td>
 				</tr>
 				<tr>
 					<td>Company:</td>
@@ -150,8 +152,9 @@
 				<tr>
 					<td>Phone:</td>
 					<td class="spaceLeft"><input type="text" id="phone" value=""
-						name="phone" size="15" maxlength="15" pattern="[0-9]*"
-						title="Only numbers allowed"></td>
+						name="phone" size="20" maxlength="12" pattern="[0-9-].{0,12}"
+						title="Only 10 numbers allowed: 1011010000"
+						onblur="addDashes(this);"></td>
 				</tr>
 				<tr>
 					<td></td>

@@ -170,12 +170,12 @@ public class Validator {
 		// normalize first
 		String normalizedPhone = Normalizer.normalize(phone, Normalizer.Form.NFKC);
 		// check length
-		if (normalizedPhone.length() > 15) {
+		if (normalizedPhone.length() > 12) {
 			valid = false;
 		} // end if length is too long
 		else {
 			// create a white list of accepted characters:
-			Pattern pattern = Pattern.compile("[^0-9]");
+			Pattern pattern = Pattern.compile("[^0-9-]");
 			Matcher matcher = pattern.matcher(normalizedPhone);
 			if (!matcher.find()) {
 				valid = true;

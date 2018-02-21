@@ -16,10 +16,12 @@
 	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
 	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
-<script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+<%-- Use javascript to implement PRG pattern --%>
+<%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
+<script LANGUAGE="JavaScript">
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
 </script>
 <body>
 	<%@include file="header.html"%>
