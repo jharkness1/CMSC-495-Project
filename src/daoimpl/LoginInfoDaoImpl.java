@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import dao.LoginInfoDao;
 import db.DBConnector;
 import models.LoginInfo;
+import utilities.LogWriter;
 
 public class LoginInfoDaoImpl implements LoginInfoDao {
 
@@ -162,6 +163,11 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 				lockedOut = true;
 			}
 		} // end if the account was locked
+		
+		// log
+		if (lockedOut) {
+			LogWriter.loginLockout(loginInfo.getUsername());
+		}
 
 		return lockedOut;
 	}
@@ -188,6 +194,12 @@ public class LoginInfoDaoImpl implements LoginInfoDao {
 			}
 		} // end if password from the login form didn't match password from the database
 
+		// log
+		if (authentic) {
+			LogWriter.successfulLogin(loginInfo.getUsername());
+		} else {
+			LogWriter.unsucessfulLoginAttempt(loginInfo.getUsername());
+		}
 		return authentic;
 	}
 

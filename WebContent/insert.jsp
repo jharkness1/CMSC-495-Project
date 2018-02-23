@@ -24,7 +24,6 @@
 <title>Create User Account</title>
 </head>
 <body>
-	<p id="demo"></p>
 	<%@include file="header.html"%>
 	<%-- If the session is active allow to logout or return to Home page --%>
 	<%
@@ -154,7 +153,7 @@
 					<td class="spaceLeft"><input type="text" id="phone" value=""
 						name="phone" size="20" maxlength="12" pattern="[0-9-].{0,12}"
 						title="Only 10 numbers allowed: 1011010000"
-						onblur="addDashes(this);"></td>
+						onblur="addDashes(this);" autocomplete="off"></td>
 				</tr>
 				<tr>
 					<td></td>
