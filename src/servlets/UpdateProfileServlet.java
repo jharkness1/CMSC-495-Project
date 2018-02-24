@@ -212,7 +212,7 @@ public class UpdateProfileServlet extends HttpServlet {
 										"Someone already registered given email or username. Try again.");
 								// log
 								LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
-								LogWriter.recordError("Duplicate username or password.");
+								LogWriter.recordError("Duplicate username or email.");
 							}
 						}
 					} // end if password matched the password_confirm
