@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import daoimpl.UserProfileDaoImpl;
 import models.UserProfile;
+import utilities.LogWriter;
 import utilities.Validator;
 
 /**
@@ -19,6 +21,8 @@ import utilities.Validator;
 @WebServlet("/InsertUserServlet")
 public class InsertUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private HttpSession session;
+	private String loggedInUsername;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -60,6 +64,13 @@ public class InsertUserServlet extends HttpServlet {
 		String zip = request.getParameter("zip");
 		String phone = request.getParameter("phone");
 
+		// check if any user was logged in
+		// retrieve username from the session attribute
+		session = request.getSession(true);
+		loggedInUsername = ((String) session.getAttribute("username") != null)
+				? (String) session.getAttribute("username")
+				: "unauthenticated user";
+
 		// check if all required fields have been filled out
 		if (firstName.length() > 0 || lastName.length() > 0 || email.length() > 0 || username.length() > 0
 				|| password.length() > 0 || password_confirm.length() > 0) {
@@ -91,21 +102,31 @@ public class InsertUserServlet extends HttpServlet {
 							// display message above the form
 							request.setAttribute("ErrorMessage",
 									"Success! You can login using the registered credentials.");
+							// log
+							LogWriter.successfulAccountCreation(loggedInUsername, username);
 
 						} else {
 							// if account could not be created
 							// display an error message above the form
 							request.setAttribute("ErrorMessage",
 									"Sorry. The account could not be created at the moment.");
+							// log
+							LogWriter.unsuccessfulAccountCreation(loggedInUsername, username);
 
 						}
 					} else {
 						// display an error message above the form
 						request.setAttribute("ErrorMessage", "User account for that username or email already exist!");
+						// log 
+						LogWriter.unsuccessfulAccountCreation(loggedInUsername, username);
+						LogWriter.recordError("Duplicate username or email.");
 					}
 				} else {
 					// display an error message above the form
 					request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
+					// log 
+					LogWriter.unsuccessfulAccountCreation(loggedInUsername, username);
+					LogWriter.recordError("Confirmed password did not match password.");
 				}
 
 			} // end if all posted fields have been positively validated

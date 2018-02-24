@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utilities.LogWriter;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HttpSession session;
+	private String loggedInUser;
 
 	/**
 	 * Default constructor.
@@ -34,11 +37,19 @@ public class LogoutServlet extends HttpServlet {
 			// Send back to login page
 			response.sendRedirect("login.jsp");
 		} else {
+			loggedInUser = (String) session.getAttribute("username");
 			session = request.getSession(true);
 			session.removeAttribute("ownProfile");
 			session.removeAttribute("role");
 			session.removeAttribute("username");
+			// log
+			if (session.getAttribute("ownProfile") == null) {
+				LogWriter.successfulLogout(loggedInUser);
+			} else {
+				LogWriter.unsuccessfulLogout(loggedInUser);
+			}
 			session.invalidate();
+
 			// redirect to login
 			request.setAttribute("ErrorMessage", "You have successfully logged out.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

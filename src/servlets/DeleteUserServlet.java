@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import daoimpl.UserProfileDaoImpl;
 import models.UserProfile;
+import utilities.LogWriter;
 
 /**
  * Servlet implementation class DeleteUserServlet
@@ -25,6 +26,7 @@ public class DeleteUserServlet extends HttpServlet {
 	// variable that will determine whether the user is authorized to delete profile
 	// deny by default
 	private boolean allowDelete = false;
+	private String loggedInUsername;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -59,6 +61,8 @@ public class DeleteUserServlet extends HttpServlet {
 		String role = (String) session.getAttribute("role");
 		UserProfile loggedInUser = (UserProfile) session.getAttribute("ownProfile");
 		int idOfLoggedInUser = loggedInUser.getId();
+		// retrieve session username for logging purposes
+		loggedInUsername = (String) session.getAttribute("username");
 		if (!role.equals("admin")) {
 			// deny
 			allowDelete = false;
@@ -80,12 +84,19 @@ public class DeleteUserServlet extends HttpServlet {
 			UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();
 			boolean deleted = userProfileDaoImpl.deleteUser(this.id);
 			if (deleted) {
+				// log
+				LogWriter.successfulProfileDeletion(loggedInUsername, String.valueOf(this.id));
 				request.setAttribute("ErrorMessage", "That account has been officially deleted from this system");
 			} else {
+				// log
+				LogWriter.unsuccessfulProfileDeletion(loggedInUsername, String.valueOf(this.id));
 				request.setAttribute("ErrorMessage", "There has been a problem with Deleting this account.");
 			}
 		} else { // if not authorized to delete
 			request.setAttribute("ErrorMessage", "You are not authorized to delete this account!");
+			// log
+			LogWriter.unsuccessfulProfileDeletion(loggedInUsername, String.valueOf(this.id));
+			LogWriter.recordError("You are not authorized to delete this account!");
 		}
 		// create data access object implementation and all profiles from database
 		UserProfileDaoImpl userProfileDaoImpl = new UserProfileDaoImpl();

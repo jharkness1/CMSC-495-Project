@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import daoimpl.UserProfileDaoImpl;
 import models.UserProfile;
+import utilities.LogWriter;
 import utilities.Validator;
 
 /**
@@ -25,6 +26,7 @@ public class UpdateProfileServlet extends HttpServlet {
 	// variable that will determine whether the user is authorized to update profile
 	// deny by default
 	private boolean allowUpdate = false;
+	private String loggedInUsername;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -76,6 +78,8 @@ public class UpdateProfileServlet extends HttpServlet {
 		String role = (String) session.getAttribute("role");
 		UserProfile loggedInUser = (UserProfile) session.getAttribute("ownProfile");
 		int idOfLoggedInUser = loggedInUser.getId();
+		// retrieve session username for logging purposes
+		loggedInUsername = (String) session.getAttribute("username");
 		if (!role.equals("admin")) {
 			// if user is not admin check if the posted id equals own id
 			if (idOfUpdatedUser == idOfLoggedInUser) {
@@ -119,6 +123,12 @@ public class UpdateProfileServlet extends HttpServlet {
 							// System.out.println("You are not changing email and username");
 							// try to update profile
 							String message = userProfileDaoImpl.updateProfile(user, oldUsername);
+							// log
+							if (message.equals("Success! Profile updated.")) {
+								LogWriter.successfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+							} else {
+								LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+							}
 							request.setAttribute("ErrorMessage", message);
 							// now check whether to update session attribute
 							// if the update was performed on own profile, update session attribute, and
@@ -176,6 +186,14 @@ public class UpdateProfileServlet extends HttpServlet {
 								// try to update
 								// System.out.println("Good to go!");
 								String message = userProfileDaoImpl.updateProfile(user, oldUsername);
+								// log
+								if (message.equals("Success! Profile updated.")) {
+									LogWriter.successfulProfileUpdate(loggedInUsername,
+											String.valueOf(idOfUpdatedUser));
+								} else {
+									LogWriter.unsuccessfulProfileUpdate(loggedInUsername,
+											String.valueOf(idOfUpdatedUser));
+								}
 								request.setAttribute("ErrorMessage", message);
 								// now check whether to update session attribute
 								// if the update was performed on own profile, update session attribute, and
@@ -192,12 +210,18 @@ public class UpdateProfileServlet extends HttpServlet {
 								// display an error message
 								request.setAttribute("ErrorMessage",
 										"Someone already registered given email or username. Try again.");
+								// log
+								LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+								LogWriter.recordError("Duplicate username or password.");
 							}
 						}
 					} // end if password matched the password_confirm
 					else {
 						// display an error message
 						request.setAttribute("ErrorMessage", "Confirmed password did not match your password.");
+						// log
+						LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+						LogWriter.recordError("Confirmed password did not match password.");
 					} // end if passwords didn't match
 
 				} // end if all fields were validated
@@ -205,12 +229,18 @@ public class UpdateProfileServlet extends HttpServlet {
 					// if user input was not valid
 					// display an error message
 					request.setAttribute("ErrorMessage", "Wrong input.Try again.");
+					// log
+					LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+					LogWriter.recordError("Wrong input.");
 				}
 
 			} // end if all required fields have been filled out
 			else {
 				// display an error message
 				request.setAttribute("ErrorMessage", "Required fields cannot be empty.Try again.");
+				// log
+				LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+				LogWriter.recordError("Required fields cannot be empty.");
 			} // end if not all required fields have been filled
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
@@ -218,6 +248,9 @@ public class UpdateProfileServlet extends HttpServlet {
 		else { // if user was not authorized to perform update
 				// redirect to home.jsp
 			request.setAttribute("ErrorMessage", "Access denied.");
+			// log
+			LogWriter.unsuccessfulProfileUpdate(loggedInUsername, String.valueOf(idOfUpdatedUser));
+			LogWriter.recordError("Access denied.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}

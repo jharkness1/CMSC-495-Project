@@ -104,7 +104,7 @@ public class LogWriter {
 			writer.newLine();
 			writer.append("Successful Profile Access on " + date + " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" was able to access the profile of:" + profileName + ".");
+			writer.append(" was able to access the profile id: " + profileName + ".");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -133,7 +133,7 @@ public class LogWriter {
 			writer.append(
 					"Error: Unsuccessful Profile Access on " + date + " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" attempting to access the profile of:" + profileName + ".");
+			writer.append(" attempting to access the profile id: " + profileName + ".");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -160,7 +160,7 @@ public class LogWriter {
 			writer.newLine();
 			writer.append("Successful Profile Update on " + date + " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" was able to update the profile of:" + profileName + ".");
+			writer.append(" was able to update the profile id: " + profileName + ".");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -189,7 +189,7 @@ public class LogWriter {
 			writer.append(
 					"Error: Unsuccessful Profile Update on " + date + " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" was unable to update the profile of:" + profileName + " correctly.");
+			writer.append(" was unable to update the profile id: " + profileName + " correctly.");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -216,7 +216,7 @@ public class LogWriter {
 			writer.newLine();
 			writer.append("Successful Profile Deletion on " + date + " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" was able to delete the profile of:" + profileName + ".");
+			writer.append(" was able to delete the profile id: " + profileName + ".");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -245,7 +245,63 @@ public class LogWriter {
 			writer.append("Error: Unsuccessful Profile Deletion attempt on " + date
 					+ " in which the following username: " + username);
 			writer.newLine();
-			writer.append(" was unable to delete the profile of:" + profileName + ".");
+			writer.append(" was unable to delete the profile id: " + profileName + ".");
+			writer.newLine();
+		}
+		// print error message if there is one
+		catch (IOException io) {
+			System.out.println("File IO Exception" + io.getMessage());
+		}
+
+		try {
+			if (writer != null) {
+				writer.close();
+			}
+		}
+		// print error message if there is one
+		catch (IOException io) {
+			System.out.println("Issue closing the File." + io.getMessage());
+		}
+	}
+
+	// This function will log when a user successfully creates a profile
+	public static void successfulAccountCreation(String username, String profileName) {
+		try {
+			Date date = new Date();
+			writer = new BufferedWriter(new FileWriter(filename, append));
+			writer.newLine();
+			writer.append("Successful Profile Creation on " + date + " in which the following username: " + username);
+			writer.newLine();
+			writer.append(" was able to create the profile for: " + profileName + ".");
+			writer.newLine();
+		}
+		// print error message if there is one
+		catch (IOException io) {
+			System.out.println("File IO Exception" + io.getMessage());
+		}
+
+		try {
+			if (writer != null) {
+				writer.close();
+			}
+		}
+		// print error message if there is one
+		catch (IOException io) {
+			System.out.println("Issue closing the File." + io.getMessage());
+		}
+	}
+
+	// This function will log when a user unsuccessfully attempts to create a
+	// profile
+	public static void unsuccessfulAccountCreation(String username, String profileName) {
+		try {
+			Date date = new Date();
+			writer = new BufferedWriter(new FileWriter(filename, append));
+			writer.newLine();
+			writer.append("Error: Unsuccessful Profile Creation attempt on " + date + " in which the following user: "
+					+ username);
+			writer.newLine();
+			writer.append(" was unable to create the profile for: " + profileName + ".");
 			writer.newLine();
 		}
 		// print error message if there is one
@@ -270,7 +326,7 @@ public class LogWriter {
 			Date date = new Date();
 			writer = new BufferedWriter(new FileWriter(filename, append));
 			writer.newLine();
-			writer.append("Successful Logout on " + date + " in which the following username: " + username);
+			writer.append("Successful Logout on " + date + " in which the following user: " + username);
 			writer.newLine();
 			writer.append(" was able to logout correctly and stop access to their account.");
 			writer.newLine();
