@@ -59,10 +59,8 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			} // end if user is admin
 		%>
 	</div>
-	
-	<div id="home">
 
-	</div>
+	<div id="home">
 		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
@@ -73,6 +71,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		<%
 			} // end error
 		%>
+	</div>
 	<h2>Welcome <%=session.getAttribute("username") %>!</h2>
 		<h4>Your Profile Information</h4>
 

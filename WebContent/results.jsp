@@ -58,7 +58,9 @@
 		// if any results were found, display them
 				if (results.size() > 0) {
 	%>
-	<div id="error">
+
+	<div id="results">
+		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
@@ -69,8 +71,7 @@
 			} // end error
 		%>
 	</div>
-
-	<div id="results">
+	
 		<h3>Results</h3>
 		<table id="results">
 			<tr>

@@ -29,7 +29,9 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		if (session.getAttribute("ownProfile") != null && session.getAttribute("role").equals("admin")) {
 			// display buttons:
 	%>
-	<div id="buttons" class="buttons">
+
+	<div id="search">
+		<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
 		</form>
@@ -40,7 +42,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		<a href="search.jsp"><button type="button">Search</button></a> <a
 			href="insert.jsp"><button type="button">Create Account</button></a>
 	</div>
-	<div id="error">
+		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
@@ -51,7 +53,6 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			} // end error
 		%>
 	</div>
-	<div id="search">
 		<h3>Search</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="searchUser">
