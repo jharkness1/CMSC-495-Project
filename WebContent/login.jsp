@@ -29,46 +29,19 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 	}
 </script>
 <body>
-	<%@include file="header.html"%>
+	<header id="header1">
+		<h1>Company ABC.inc</h1>
+	</header>
 	<%
 		if (session.getAttribute("ownProfile") != null) { // if session is valid redirect to home.jsp
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		} else {
 	%>
+
 	<%-- Login Form --%>
 	<div id="login">
-		<h3>Login</h3>
-		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
-		<form method="post" action="authenticate">
-			<table id="login">
-				<tr>
-					<td>Username:</td>
-					<td class="spaceLeft"><input type="text" id="usernameLogin"
-						value="" name="usernameLogin" size="30" maxlength="30" pattern="[A-Za-z-0-9 ]*"
-						title="Only letters and numbers allowed" required autofocus></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td class="spaceLeft"><input type="password" id="passwordLogin"
-						name="passwordLogin" value="" size="30" maxlength="30" pattern="[A-Za-z0-9._!@$].{7,}"
-						title="At least 8 characters. Allowed special characters are: ._!@$"
-						required autocomplete='off'></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td align="right"><input type="submit" value="Login"
-						name="login"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td align="right"><a href="insert.jsp"><button
-								type="button">Create User Account</button></a></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<!-- Print Error Message if any -->
+		<!-- Print Error Message if any -->
 	<div id="error">
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
@@ -80,7 +53,35 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			}
 		%>
 	</div>
-	<div>
+		<h2>Please Login</h2>
+		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
+		<form method="post" action="authenticate">
+			<table id="login">
+				<tr>
+				<td class="spaceLeft" align="left">Username: </td>
+					<td class="spaceLeft"><input type="text" id="usernameLogin"
+						placeholder="Username" name="usernameLogin" size="30" maxlength="30" pattern="[A-Za-z-0-9 ]*"
+						title="Only letters and numbers allowed" required autofocus></td>
+				</tr>
+				<tr>
+					<td class="spaceLeft" align="left">Password: </td>
+					<td class="spaceLeft"><input type="password" id="passwordLogin"
+						name="passwordLogin" placeholder="Password" size="30" maxlength="30" pattern="[A-Za-z0-9._!@$].{7,}"
+						title="At least 8 characters. Allowed special characters are: ._!@$"
+						required autocomplete='off'></td>
+
+				<tr>
+					<td class="spaceLeft"><input type="submit" id="loginbtn" value="Login"
+						name="login"></td>
+
+
+					<td class="spaceLeft"><a href="insert.jsp"><button  id="createbtn"
+								type="button" align="right">Create Account</button></a></td>
+			</tr>
+			</table>
+		</form>
+		
+		<div id="disclaimer">
 		<h5>
 			Privacy Disclaimer:<br /> This system is for the use of authorized
 			users only.<br /> Individuals using this computer system without<br />
@@ -90,7 +91,12 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		</h5>
 
 	</div>
-	<%@include file="footer.html"%>
+	</div>
+	
+
+	<footer id="footer1">
+		Copyright &#169; 2018 Company ABC.inc; Team Alpha
+	</footer>
 	<%
 		}
 	%>

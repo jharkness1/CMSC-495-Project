@@ -39,7 +39,9 @@
 		}
 	%>
 
-	<div id="error">
+
+	<div id="createAccount">
+		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
 			String e = (String) request.getAttribute("ErrorMessage");
@@ -50,7 +52,6 @@
 			}
 		%>
 	</div>
-	<div id="createAccount">
 		<h3>Create New Account</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="insertUser">
