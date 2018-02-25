@@ -1,0 +1,198 @@
+@charset "ISO-8859-1";
+
+#header1 {
+	background-color: #408080;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	max-width: 500px;
+	margin-top: 80px;
+	float: center;
+	margin-left: auto;
+	margin-right:auto;
+
+}
+
+#footer1 {
+	background-color: #408080;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	max-width: 500px;
+	float: center;
+	margin-left: auto;
+	margin-right:auto;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+ footer#footer {
+	background-color: #408080;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	max-width: 700px;
+	float: center;
+	margin-left: auto;
+	margin-right:auto;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	
+}
+
+header#header {
+	background-color: #408080;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	max-width: 700px;
+	margin-top: 80px;
+	float: center;
+	margin-left: auto;
+	margin-right:auto;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	background-color: #dfdfdf;
+	font-family: "Times New Roman", Times, serif;
+}
+
+h2, h3, h4, h5 {
+	text-align: center;
+	padding: 7px;
+	border-color: grey;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+#buttons {
+	overflow: hidden;
+}
+
+#buttons a, form {
+	float: center;
+	display: block;
+	text-align: right;
+}
+
+.buttons {
+	position: fixed;
+	top: 40;
+	right: 0;
+}
+
+#home {
+	margin: 0px;
+}
+
+#error {
+	text-align: center;
+	color: red;
+	padding: 10px;
+	background-color:#c0c0c0;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table#profile, table#results {
+	border-style: ridge;
+	border-width: 10px;
+	padding: 10px;
+	margin: auto;
+}
+
+ table#search, table#editProfile, table#createAccount {
+	border-style: ridge;
+	border-width: 10px;
+	background-color: white;
+	padding: 10px;
+	margin: auto;
+}
+
+.spaceCenter {
+	padding: 7px;
+	text-align: center;
+}
+
+.spaceLeft {
+	padding: 10px;
+	text-align: center;
+}
+
+#home, #updateProfile, #search, #results, #createAccount {
+	margin-left: auto;
+	margin-right: auto;
+	background-color:#c0c0c0 ;
+	width: 715px;
+}
+
+#login {
+  max-width: 520px;
+  padding: 15px 0px 45px;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+
+  background-color: #c0c0c0;
+}
+
+#loginbtn {
+	background-color: #408080;
+    color: white;
+    padding: 3px 15px;
+    text-align: auto;
+    font-size: 12px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 100px;
+	float: left;
+}
+
+#loginbtn:hover {
+    background-color: #ffffff;
+    color:black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#createbtn {
+	background-color: #408080;
+    color: white;
+    padding: 3px 15px;
+    text-align: auto;
+    font-size: 12px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 150px;
+	float: left;
+
+}
+
+#createbtn:hover {
+    background-color: #ffffff;
+    color:black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
