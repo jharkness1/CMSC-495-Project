@@ -22,7 +22,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body background="Den.png">
+<body>
 	<%@include file="header.html"%>
 	<%
 		// if session is valid and user's role is admin

@@ -24,7 +24,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<body background="Den.png">
+<body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>

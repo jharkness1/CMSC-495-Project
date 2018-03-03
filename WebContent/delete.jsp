@@ -23,7 +23,7 @@
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body background="Den.png">
+<body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%
@@ -46,7 +46,9 @@
 		<a href="search.jsp"><button type="button">Search</button></a> <a
 			href="insert.jsp"><button type="button">Create Account</button></a>
 	</div>
+	
 	<div id="delete">
+	<div class="content">
 		<h3>Profile for Deletion</h3>
 		<h4>Are you sure you want to permanently Delete this Profile?</h4>
 		<table id="profile">
@@ -122,6 +124,7 @@
 			%>
 		</table>
 		<br /> <br />
+		</div>
 	</div>
 	<%@include file="footer.html"%>
 </body>

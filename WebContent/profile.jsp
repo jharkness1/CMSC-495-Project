@@ -23,7 +23,7 @@
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<body background="Den.png">
+<body>
 	<%@include file="header.html"%>
 
 	<%!UserProfile user;%>

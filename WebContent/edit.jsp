@@ -25,7 +25,7 @@
 <title>Edit Profile</title>
 </head>
 
-<body background="Den.png">
+<body>
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>

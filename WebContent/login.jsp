@@ -28,7 +28,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body background="Den.png">
+<body>
 	<header id="header1">
 		<h1>Company  <font color="red">A</font><font color="#21a61a">B</font><font color="blue">C</font>.inc</h1>
 	</header>
