@@ -23,7 +23,7 @@
 </script>
 <title>Create User Account</title>
 </head>
-<body>
+<body background="Den.png">
 	<p id="demo"></p>
 	<%@include file="header.html"%>
 	<%-- If the session is active allow to logout or return to Home page --%>

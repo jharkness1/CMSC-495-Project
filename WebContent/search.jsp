@@ -22,7 +22,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body>
+<body background="Den.png">
 	<%@include file="header.html"%>
 	<%
 		// if session is valid and user's role is admin
@@ -31,6 +31,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 	%>
 
 	<div id="search">
+	<div class = "content">
 		<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
@@ -80,6 +81,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			<br />
 
 		</form>
+		</div>
 	</div>
 	<%
 		} else { // no session

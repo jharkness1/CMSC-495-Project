@@ -24,7 +24,7 @@
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body>
+<body background="Den.png">
 	<%@include file="header.html"%>
 	<%!ArrayList<UserProfile> results;%>
 	<%
@@ -60,6 +60,7 @@
 	%>
 
 	<div id="results">
+	<div class="content">
 		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
@@ -126,6 +127,7 @@
 				dispatcher.forward(request, response);
 			}
 		%>
+		</div>
 	</div>
 	<%@include file="footer.html"%>
 </body>

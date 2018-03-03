@@ -24,7 +24,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<body>
+<body background="Den.png">
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
@@ -38,6 +38,10 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			user = (UserProfile) session.getAttribute("ownProfile");
 			// show logout button for everyone
 	%>
+
+
+	<div id="home">
+		
 	<div id="buttons" class="buttons">
 		<form method="post" action="logout">
 			<input type="submit" name="logout" value="Logout">
@@ -60,7 +64,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 		%>
 	</div>
 
-	<div id="home">
+	<div class = "content">
 		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
@@ -137,6 +141,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 			%>
 		</table>
 		<br /> <br />
+		</div>
 	</div>
 	<%@include file="footer.html"%>
 </body>

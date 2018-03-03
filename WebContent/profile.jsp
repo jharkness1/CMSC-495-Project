@@ -23,7 +23,7 @@
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<body>
+<body background="Den.png">
 	<%@include file="header.html"%>
 
 	<%!UserProfile user;%>
@@ -66,7 +66,7 @@
 
 
 	<div id="home">
-
+	<div class = "content">
 		<h3>View Profile Information</h3>
 
 
@@ -196,7 +196,7 @@
 		</table>
 
 		<br /> <br />
-
+	</div>
 	</div>
 
 	<%@include file="footer.html"%>

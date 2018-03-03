@@ -1,5 +1,6 @@
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -56,6 +57,10 @@ public class AuthenticateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// get the posted values from the login form
+		
+		String newFile = new File("PMTlog.txt").getAbsolutePath();
+		System.out.println(newFile);
+		
 		String username = request.getParameter("usernameLogin");
 		String password = request.getParameter("passwordLogin");
 		// check if all required fields have been filled out

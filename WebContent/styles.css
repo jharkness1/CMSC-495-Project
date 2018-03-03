@@ -1,7 +1,8 @@
 @charset "ISO-8859-1";
 
 #header1 {
-	background-color: #408080;
+	background: linear-gradient(to right,#408080,#0080c0);
+	
 	color: white;
 	text-align: center;
 	padding: 10px;
@@ -10,11 +11,12 @@
 	float: center;
 	margin-left: auto;
 	margin-right:auto;
+	border: 1px solid rgba(0, 0, 0, 0.5);
 
 }
 
 #footer1 {
-	background-color: #408080;
+	background: linear-gradient(to right,#408080,#0080c0);
 	color: white;
 	text-align: center;
 	padding: 10px;
@@ -22,42 +24,50 @@
 	float: center;
 	margin-left: auto;
 	margin-right:auto;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.5);
 
 }
 
  footer#footer {
-	background-color: #408080;
+	background: linear-gradient(to right,#408080,#0080c0);
 	color: white;
 	text-align: center;
 	padding: 10px;
-	max-width: 700px;
-	float: center;
+	min-width: 1200px;
 	margin-left: auto;
 	margin-right:auto;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
 	
 }
 
 header#header {
-	background-color: #408080;
+	background: linear-gradient(to right,#408080,#0080c0);
 	color: white;
 	text-align: center;
 	padding: 10px;
-	max-width: 700px;
+	min-width: 1200px;
 	margin-top: 80px;
-	float: center;
 	margin-left: auto;
 	margin-right:auto;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
+}
+
+
+.content {
+	margin-left: auto;
+	margin-right: 0;
+	background: linear-gradient(to right,#408080,#0080c0);
+	width: 1200px;
+	height: 1000px;
 }
 
 body {
 	margin: 0;
+	padding: 0;
 	height: 100%;
-	background-color: #dfdfdf;
+	background-color: #ffffff;
 	font-family: "Times New Roman", Times, serif;
 }
 
@@ -65,25 +75,17 @@ h2, h3, h4, h5 {
 	text-align: center;
 	padding: 7px;
 	border-color: grey;
+	margin-top: 0;
 }
 
-input[type=text] {
-    width: 100%;
-    padding: 5px 5px;
-    margin: 10px 0;
-    box-sizing: border-box;
-}
-
-input[type=password] {
-    width: 100%;
-    padding: 5px 5px;
-    margin: 8px 0;
-    box-sizing: border-box;
+th, td {
+	border-bottom: 1px solid #ddd;
 }
 
 
 #buttons {
 	overflow: hidden;
+	
 }
 
 #buttons a, form {
@@ -96,6 +98,7 @@ input[type=password] {
 	position: fixed;
 	top: 40;
 	right: 0;
+	
 }
 
 #home {
@@ -106,7 +109,7 @@ input[type=password] {
 	text-align: center;
 	color: red;
 	padding: 10px;
-	background-color:#c0c0c0;
+	background: linear-gradient(to right,#408080,#0080c0);
 }
 
 table {
@@ -139,11 +142,20 @@ table#profile, table#results {
 	text-align: center;
 }
 
-#home, #updateProfile, #search, #results, #createAccount {
+#home, #updateProfile, #search, #results {
 	margin-left: auto;
 	margin-right: auto;
-	background-color:#c0c0c0 ;
-	width: 715px;
+	padding-right:180px;
+	background: linear-gradient(to right,#408080,#0080c0);
+	width: 1020px;
+}
+
+#createAccount {
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: auto;
+	background: linear-gradient(to right,#408080,#0080c0);
+	width: 1020px;
 }
 
 #login {
@@ -152,7 +164,7 @@ table#profile, table#results {
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.5);
 
-  background-color: #c0c0c0;
+  background: linear-gradient(to right,#408080,#0080c0);
 }
 
 #loginbtn {
@@ -195,4 +207,16 @@ table#profile, table#results {
         -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 }
+
+input[type=submit],[type=button],[type=reset] {
+	background-color: #408080;
+    color: white;
+    padding: 3px 15px;
+    text-align: auto;
+    font-size: 12px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 150px;
+}
+
 
