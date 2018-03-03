@@ -23,25 +23,50 @@
 </script>
 <title>Create User Account</title>
 </head>
-<body>
+<body background="s.jpg">
 	<p id="demo"></p>
 	<%@include file="header.html"%>
 	<%-- If the session is active allow to logout or return to Home page --%>
 	<%
 		if (session.getAttribute("ownProfile") != null) {
 	%>
-	<div id="buttons" class="buttons">
-		<form method="post" action="logout">
-			<input type="submit" name="logout" value="Logout">
-		</form>
-		<a href="home.jsp"><button type="button">Home</button></a>
-	</div>
+	<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="home.jsp">Home</a>
+			<form name="myform" method="post" action="logout">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform.submit()"><a href="#">Logout</a></span>
+			</form>
+
+			<%
+				// check user's role
+					session = request.getSession(true);
+					String role = (String) session.getAttribute("role");
+
+					if (role.equals("admin")) {
+						// show administrative options:
+			%>
+			<form name="myform1" method="post" action="listAll">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform1.submit()"><a href="#">List All Users</a></span>
+			</form>
+			<a href="search.jsp">Search</a> <a href="insert.jsp">Create
+				Account</a>
+			<%
+				} // end if user is admin
+			%>
+
+		</div>
+
+		<!-- Use any element to open the sidenav -->
+
 	<%
 		}
 	%>
 
 
 	<div id="createAccount">
+	<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 		<div id="error">
 		<!-- Print Error Message if any -->
 		<%
@@ -53,6 +78,7 @@
 			}
 		%>
 	</div>
+	<div id="createForm">
 		<h3>Create New Account</h3>
 		<!-- Display a Form, validate input within the browser, by defining field types, accepted patterns -->
 		<form method="post" action="insertUser">
@@ -184,7 +210,19 @@
 			%>
 		</table>
 		<br /> <br />
+		</div>
 	</div>
 	<%@include file="footer.html"%>
 </body>
+<script>
+	/* Set the width of the side navigation to 250px */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	/* Set the width of the side navigation to 0 */
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
 </html>

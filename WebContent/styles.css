@@ -1,10 +1,11 @@
 @charset "ISO-8859-1";
 
 #header1 {
-	background: linear-gradient(to right,#408080,#0080c0);
+	background-color: #004080;
 	
 	color: white;
 	text-align: center;
+	text-shadow: 2px 2px black;
 	padding: 10px;
 	max-width: 500px;
 	margin-top: 80px;
@@ -16,7 +17,7 @@
 }
 
 #footer1 {
-	background: linear-gradient(to right,#408080,#0080c0);
+	background-color: #004080;
 	color: white;
 	text-align: center;
 	padding: 10px;
@@ -29,7 +30,7 @@
 }
 
  footer#footer {
-	background: linear-gradient(to right,#408080,#0080c0);
+	background-color: #004080;
 	color: white;
 	text-align: center;
 	padding: 10px;
@@ -38,38 +39,33 @@
 	margin-right:auto;
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
+	border-bottom: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
 	
 }
 
 header#header {
-	background: linear-gradient(to right,#408080,#0080c0);
+	 text-shadow: 2px 2px black;
+	background-color: #004080;
 	color: white;
 	text-align: center;
-	padding: 10px;
+	padding: 50px;
 	min-width: 1200px;
-	margin-top: 80px;
 	margin-left: auto;
 	margin-right:auto;
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
-}
-
-
-.content {
-	margin-left: auto;
-	margin-right: 0;
-	background: linear-gradient(to right,#408080,#0080c0);
-	width: 1200px;
-	height: 1000px;
+	border-bottom: 1px solid #ffffff;
+	
 }
 
 body {
-	background-image: url("s.jpg");
+
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	background-color: #ffffff;
-	font-family: "Times New Roman", Times, serif;
+	font-family: Arail,  Sans-serif;
+	
 }
 
 h2, h3, h4, h5 {
@@ -92,25 +88,67 @@ th, td {
 #buttons a, form {
 	float: center;
 	display: block;
-	text-align: right;
+	text-align: left;
+
 }
 
 .buttons {
 	position: fixed;
 	top: 40;
 	right: 0;
+	font-size: 17px;
 	
 }
+#createbtn {
+		background-color: #004080;
+	color:white;
+    padding: 3px 15px;
+    text-align: auto;
+    font-size: 17px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 180px;
+}
 
-#home {
-	margin: 0px;
+#createbtn:hover {
+	background-color: #ffffff;
+    color:black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#deletebtn {
+		background-color: #004080;
+	color:white;
+    padding: 3px 15px;
+    text-align: auto;
+    font-size: 17px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 180px;
+}
+#deletebtn:hover {
+	background-color: #ffffff;
+    color:black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 #error {
 	text-align: center;
 	color: red;
 	padding: 10px;
-	background: linear-gradient(to right,#408080,#0080c0);
+	 background-color: #0080c0;
+}
+
+#createForm {
+		margin-left: auto;
+	margin-right: auto;
+	background-color: #0080c0;
+	width: 1000px;
+	height:auto;
 }
 
 table {
@@ -123,12 +161,14 @@ table#profile, table#results {
 	border-width: 10px;
 	padding: 10px;
 	margin: auto;
+	background-color: lightgrey;
+
 }
 
  table#search, table#editProfile, table#createAccount {
 	border-style: ridge;
 	border-width: 10px;
-	background-color: white;
+	background-color: lightgrey;
 	padding: 10px;
 	margin: auto;
 }
@@ -143,20 +183,20 @@ table#profile, table#results {
 	text-align: center;
 }
 
-#home, #updateProfile, #search, #results,#delete {
+#home, #updateProfile, #search, #results,#delete{
 	margin-left: auto;
 	margin-right: auto;
-	padding-right:180px;
-	background: linear-gradient(to right,#408080,#0080c0);
-	width: 1020px;
+	background-color: #0080c0;
+	width: auto;
+	height:auto;
 }
 
 #createAccount {
 	margin-left: auto;
 	margin-right: auto;
 	padding-right: auto;
-	background: linear-gradient(to right,#408080,#0080c0);
-	width: 1020px;
+	 background-color: #0080c0;
+	width: 100%;
 }
 
 #login {
@@ -165,59 +205,78 @@ table#profile, table#results {
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.5);
 
-  background: linear-gradient(to right,#408080,#0080c0);
+  background-color: #0080c0;
 }
 
-#loginbtn {
-	background-color: #408080;
-    color: white;
+
+
+input {
+	background-color: #004080;
+	color:white;
     padding: 3px 15px;
     text-align: auto;
-    font-size: 12px;
+    font-size: 17px;
     border: 1px solid #ffffff;
     border-radius: 4px;
-    width: 100px;
-	float: left;
+    width: 180px;
 }
 
-#loginbtn:hover {
-    background-color: #ffffff;
+input:hover {
+	background-color: #ffffff;
     color:black;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
+	}
+
+/* The side navigation menu */
+.sidenav {
+    height: 1150px; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #004080; /* Blue*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
 }
 
-#createbtn {
-	background-color: #408080;
-    color: white;
-    padding: 3px 15px;
-    text-align: auto;
-    font-size: 12px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    width: 150px;
-	float: left;
-
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
-#createbtn:hover {
-    background-color: #ffffff;
-    color:black;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
 }
 
-input[type=submit],[type=button],[type=reset] {
-	background-color: #408080;
-    color: white;
-    padding: 3px 15px;
-    text-align: auto;
-    font-size: 12px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    width: 150px;
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
 
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

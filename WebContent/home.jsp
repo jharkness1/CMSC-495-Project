@@ -11,20 +11,20 @@
 </head>
 <%-- Prevent secure pages from caching by the browser by setting some HTTP headers --%>
 <%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.addHeader("Cache-Control","no-store");
-response.addHeader("Cache-Control", "private");
-response.addHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.addHeader("Cache-Control", "no-store");
+	response.addHeader("Cache-Control", "private");
+	response.addHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
 <%-- Use javascript to implement PRG pattern --%>
 <%-- Post-Redirect-Get pattern prevents duplicate post submissions --%>
 <script LANGUAGE="JavaScript">
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
 </script>
-<body>
+<body background="s.jpg">
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
@@ -41,108 +41,132 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 
 
 	<div id="home">
-		
-	<div id="buttons" class="buttons">
-		<form method="post" action="logout">
-			<input type="submit" name="logout" value="Logout">
-		</form>
-		<%
-			// check user's role
-				session = request.getSession(true);
-				String role = (String) session.getAttribute("role");
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<form name="myform" method="post" action="logout">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform.submit()"><a href="#">Logout</a></span>
+			</form>
 
-				if (role.equals("admin")) {
-					// show administrative options:
-		%>
-		<form method="post" action="listAll">
-			<input type="submit" name="listAll" value="List All Users">
-		</form>
-		<a href="search.jsp"><button type="button">Search</button></a> <a
-			href="insert.jsp"><button type="button">Create Account</button></a>
-		<%
-			} // end if user is admin
-		%>
-	</div>
-
-	<div class = "content">
-		<div id="error">
-		<!-- Print Error Message if any -->
-		<%
-			String e = (String) request.getAttribute("ErrorMessage");
-				if (e != null) {
-		%>
-		<br /><%=e%>
-		<%
-			} // end error
-		%>
-	</div>
-	<h2>Welcome <%=session.getAttribute("username") %>!</h2>
-		<h4>Your Profile Information</h4>
-
-		<table id="profile">
-			<tr>
-				<td><b>First Name</b></td>
-				<td class="spaceCenter"><%=user.getFirstname()%></td>
-			</tr>
-			<tr>
-				<td><b>Last Name</b></td>
-				<td class="spaceCenter"><%=user.getLastname()%></td>
-			</tr>
-
-			<tr>
-				<td><b>Email</b></td>
-				<td class="spaceCenter"><%=user.getEmail()%></td>
-			</tr>
-			<tr>
-				<td><b>Company</b></td>
-				<td class="spaceCenter"><%=user.getCompany()%></td>
-			</tr>
-			<tr>
-				<td><b>Department</b></td>
-				<td class="spaceCenter"><%=user.getDepartment()%></td>
-			</tr>
-			<tr>
-				<td><b>Title</b></td>
-				<td class="spaceCenter"><%=user.getTitle()%></td>
-			</tr>
-			<tr>
-				<td><b>Work Address</b></td>
-				<td class="spaceCenter"><%=user.getWork_address()%></td>
-			</tr>
-			<tr>
-				<td><b>Work City</b></td>
-				<td class="spaceCenter"><%=user.getWork_city()%></td>
-			</tr>
-			<tr>
-				<td><b>Work State</b></td>
-				<td class="spaceCenter"><%=user.getWork_state()%></td>
-			</tr>
-			<tr>
-				<td><b>Work Zip Code</b></td>
-				<td class="spaceCenter"><%=user.getWork_zip()%></td>
-			</tr>
-			<tr>
-				<td><b>Phone</b></td>
-				<td class="spaceCenter"><%=user.getPhone()%></td>
-			</tr>
-		</table>
-		<br />
-		<table>
-			<tr>
-				<td></td>
-				<td class="spaceCenter"><form method="post"
-						action="editProfile">
-						<input type="hidden" name="id" value="<%=user.getId()%>">
-						<input type="submit" value="Update" name="edit">
-					</form></td>
-			</tr>
 			<%
-				} // end if session was active
+				// check user's role
+					session = request.getSession(true);
+					String role = (String) session.getAttribute("role");
+
+					if (role.equals("admin")) {
+						// show administrative options:
 			%>
-		</table>
-		<br /> <br />
+			<form name="myform1" method="post" action="listAll">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform1.submit()"><a href="#">List All Users</a></span>
+			</form>
+			<a href="search.jsp">Search</a> <a href="insert.jsp">Create
+				Account</a>
+			<%
+				} // end if user is admin
+			%>
+
 		</div>
-	</div>
-	<%@include file="footer.html"%>
+
+		<!-- Use any element to open the sidenav -->
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+		<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+		<div id="main">
+				<div id="error">
+					<!-- Print Error Message if any -->
+					<%
+						String e = (String) request.getAttribute("ErrorMessage");
+							if (e != null) {
+					%>
+					<br /><%=e%>
+					<%
+						} // end error
+					%>
+				</div>
+				<h2>
+					Welcome
+					<%=session.getAttribute("username")%>!
+				</h2>
+				<h4>Your Profile Information</h4>
+
+				<table id="profile">
+					<tr>
+						<td><b>First Name</b></td>
+						<td class="spaceCenter"><%=user.getFirstname()%></td>
+					</tr>
+					<tr>
+						<td><b>Last Name</b></td>
+						<td class="spaceCenter"><%=user.getLastname()%></td>
+					</tr>
+
+					<tr>
+						<td><b>Email</b></td>
+						<td class="spaceCenter"><%=user.getEmail()%></td>
+					</tr>
+					<tr>
+						<td><b>Company</b></td>
+						<td class="spaceCenter"><%=user.getCompany()%></td>
+					</tr>
+					<tr>
+						<td><b>Department</b></td>
+						<td class="spaceCenter"><%=user.getDepartment()%></td>
+					</tr>
+					<tr>
+						<td><b>Title</b></td>
+						<td class="spaceCenter"><%=user.getTitle()%></td>
+					</tr>
+					<tr>
+						<td><b>Work Address</b></td>
+						<td class="spaceCenter"><%=user.getWork_address()%></td>
+					</tr>
+					<tr>
+						<td><b>Work City</b></td>
+						<td class="spaceCenter"><%=user.getWork_city()%></td>
+					</tr>
+					<tr>
+						<td><b>Work State</b></td>
+						<td class="spaceCenter"><%=user.getWork_state()%></td>
+					</tr>
+					<tr>
+						<td><b>Work Zip Code</b></td>
+						<td class="spaceCenter"><%=user.getWork_zip()%></td>
+					</tr>
+					<tr>
+						<td><b>Phone</b></td>
+						<td class="spaceCenter"><%=user.getPhone()%></td>
+					</tr>
+				</table>
+				<br />
+				<table>
+					<tr>
+						<td></td>
+						<td class="spaceCenter"><form method="post"
+								action="editProfile">
+								<input type="hidden" name="id" value="<%=user.getId()%>">
+								<input type="submit" value="Update" name="edit">
+							</form></td>
+					</tr>
+					<%
+						} // end if session was active
+					%>
+				</table>
+				<br /> <br />
+		</div>
+		
 </body>
+</div>
+<%@include file="footer.html"%>
+
+<script>
+	/* Set the width of the side navigation to 250px */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	/* Set the width of the side navigation to 0 */
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
 </html>

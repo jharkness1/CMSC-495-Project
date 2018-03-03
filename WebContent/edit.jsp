@@ -25,7 +25,7 @@
 <title>Edit Profile</title>
 </head>
 
-<body>
+<body background="s.jpg">
 	<%@include file="header.html"%>
 	<%!UserProfile user;%>
 	<%-- Make sure that the session is active. If session is not active redirect to login --%>
@@ -36,28 +36,7 @@
 		} else { // active session
 			// show logout button for everyone
 	%>
-	<div id="buttons" class="buttons">
-		<form method="post" action="logout">
-			<input type="submit" name="logout" value="Logout">
-		</form>
-		<a href="home.jsp"><button type="button">Home</button></a>
-		<%
-			// check user's role
-				session = request.getSession(true);
-				String role = (String) session.getAttribute("role");
 
-				if (role.equals("admin")) {
-					// show administrative options:
-		%>
-		<form method="post" action="listAll">
-			<input type="submit" name="listAll" value="List All Users">
-		</form>
-		<a href="search.jsp"><button type="button">Search</button></a> <a
-			href="insert.jsp"><button type="button">Create Account</button></a>
-		<%
-			} // end if user is admin
-		%>
-	</div>
 	<%
 		if (request.getAttribute("userInfo") != null) {
 				// retrieve the request attribute with user info
@@ -65,6 +44,36 @@
 				// show logout button and Home button
 	%>
 	<div id="updateProfile">
+			<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="home.jsp">Home</a>
+			<form name="myform" method="post" action="logout">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform.submit()"><a href="#">Logout</a></span>
+			</form>
+
+			<%
+				// check user's role
+					session = request.getSession(true);
+					String role = (String) session.getAttribute("role");
+
+					if (role.equals("admin")) {
+						// show administrative options:
+			%>
+			<form name="myform1" method="post" action="listAll">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform1.submit()"><a href="#">List All Users</a></span>
+			</form>
+			<a href="search.jsp">Search</a> <a href="insert.jsp">Create
+				Account</a>
+			<%
+				} // end if user is admin
+			%>
+
+		</div>
+
+		<!-- Use any element to open the sidenav -->
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 		<h3>Your Current Information</h3>
 		<form method="post" action="updateProfile">
 			<!-- Remember old username and email and post it as hidden values to compare them with new ones later -->
@@ -202,4 +211,15 @@
 	%>
 	<%@include file="footer.html"%>
 </body>
+<script>
+	/* Set the width of the side navigation to 250px */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	/* Set the width of the side navigation to 0 */
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
 </html>

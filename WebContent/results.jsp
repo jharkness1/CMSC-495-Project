@@ -24,7 +24,7 @@
 		window.history.replaceState(null, null, window.location.href);
 	}
 </script>
-<body>
+<body background="s.jpg">
 	<%@include file="header.html"%>
 	<%!ArrayList<UserProfile> results;%>
 	<%
@@ -36,43 +36,56 @@
 				results = (ArrayList<UserProfile>) request.getAttribute("results");
 				// display buttons:
 	%>
-	<div id="buttons" class="buttons">
-
-		<form method="post" action="logout">
-
-			<input type="submit" name="logout" value="Logout">
-
-		</form>
-
-		<a href="home.jsp"><button type="button">Home</button></a>
-		<form method="post" action="listAll">
-
-			<input type="submit" name="listAll" value="List All Users">
-
-		</form>
-
-		<a href="search.jsp"><button type="button">Search</button></a> <a
-			href="insert.jsp"><button type="button">Create Account</button></a>
-	</div>
+	
 	<%
 		// if any results were found, display them
 				if (results.size() > 0) {
 	%>
 
 	<div id="results">
-	<div class="content">
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="home.jsp">Home</a>
+			<form name="myform" method="post" action="logout">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform.submit()"><a href="#">Logout</a></span>
+			</form>
+
+			<%
+				// check user's role
+							session = request.getSession(true);
+							String role = (String) session.getAttribute("role");
+
+							if (role.equals("admin")) {
+								// show administrative options:
+			%>
+			<form name="myform1" method="post" action="listAll">
+				<span aria-hidden="true" data-icon="&#xe000;"
+					onclick="myform1.submit()"><a href="#">List All Users</a></span>
+			</form>
+			<a href="search.jsp">Search</a> <a href="insert.jsp">Create
+				Account</a>
+			<%
+				} // end if user is admin
+			%>
+
+		</div>
+
+		<!-- Use any element to open the sidenav -->
+		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
+			Menu</span>
 		<div id="error">
-		<!-- Print Error Message if any -->
-		<%
-			String e = (String) request.getAttribute("ErrorMessage");
-						if (e != null) {
-		%>
-		<br /><%=e%>
-		<%
-			} // end error
-		%>
-	</div>
-	
+			<!-- Print Error Message if any -->
+			<%
+				String e = (String) request.getAttribute("ErrorMessage");
+							if (e != null) {
+			%>
+			<br /><%=e%>
+			<%
+				} // end error
+			%>
+		</div>
+
 		<h3>Results</h3>
 		<table id="results">
 			<tr>
@@ -127,8 +140,18 @@
 				dispatcher.forward(request, response);
 			}
 		%>
-		</div>
 	</div>
 	<%@include file="footer.html"%>
 </body>
+<script>
+	/* Set the width of the side navigation to 250px */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	/* Set the width of the side navigation to 0 */
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
 </html>
